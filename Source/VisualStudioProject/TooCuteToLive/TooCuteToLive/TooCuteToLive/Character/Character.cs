@@ -24,6 +24,8 @@ namespace TooCuteToLive
         private float timeOnFire;
         private float respawnRate;
 
+        private bool multipleOfTwo;
+
         private ContentManager mContent;
 
         private bool remove;
@@ -82,6 +84,7 @@ namespace TooCuteToLive
             timeOnFire = 5.0f;
             respawnRate = 3.0f;
             remove = false;
+            multipleOfTwo = false;
         }
 
         public void changeImage(string textureName, int numFrames)
@@ -199,5 +202,10 @@ namespace TooCuteToLive
             return mSprite.getHeight();
         }
 
+        public bool MultipleOfTwo
+        {
+            get { return multipleOfTwo; }
+            set { multipleOfTwo = value; }
+        }
     }
 }

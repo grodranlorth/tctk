@@ -16,7 +16,10 @@ namespace TooCuteToLive
         private List<Character> characterList;
         ContentManager mContent;
         private List<Item> mItemList;
-        
+        GraphicsDeviceManager mGraphics;
+
+        private Random rand = new Random();
+
         private static CharacterManager instance = null;
         public static CharacterManager Instance
         {
@@ -26,17 +29,18 @@ namespace TooCuteToLive
             }
         }
 
-        public static CharacterManager GetInstance(ContentManager content)
+        public static CharacterManager GetInstance(ContentManager content, GraphicsDeviceManager graphics)
         {
             if (instance == null)
             {
-                instance = new CharacterManager(content);
+                instance = new CharacterManager(content, graphics);
             }
             return instance;
 
         }
-        private CharacterManager(ContentManager content)
+        private CharacterManager(ContentManager content, GraphicsDeviceManager graphics)
         {
+            mGraphics = graphics;
             characterList = new List<Character>();
             mContent = content;
         }
@@ -46,18 +50,21 @@ namespace TooCuteToLive
 
         }
 
-        public void addCharacter(string textureName, Vector2 position, int frameCount)
+        public void addCharacter(string textureName,int frameCount)
         {
-            characterList.Add(new Character(textureName, position, mContent, frameCount));
+            characterList.Add(new Character(textureName, 
+                              new Vector2(rand.Next(0, mGraphics.GraphicsDevice.Viewport.Width - 100), 
+                                          rand.Next(0, mGraphics.GraphicsDevice.Viewport.Height- 100)),
+                              mContent, frameCount));
         }
 
-        public void Update(GameTime gameTime, List<Item> itemList, GraphicsDeviceManager graphics)
+        public void Update(GameTime gameTime, List<Item> itemList)
         {
             List<Character> removeList = new List<Character>();
             mItemList = itemList;
             foreach (Character character in characterList)
             {
-                character.Update(gameTime, graphics);
+                character.Update(gameTime, mGraphics);
                 if (mItemList.Count > 0)
                 {
 //                    character.setSeek(true);
@@ -86,8 +93,21 @@ namespace TooCuteToLive
                         else if (character1.OnFire())
                             character.SetOnFire();
 
-                        character.Speed *= -1;
-                        character1.Speed *= -1;
+                        if (character.OnFire() && !character.MultipleOfTwo) 
+                            character.Speed *= -2;
+                        else 
+                        {
+                            character.Speed *= -1/2;
+                            character.MultipleOfTwo = false;
+                        }
+
+                        if (character1.OnFire() && !character1.MultipleOfTwo)
+                            character1.Speed *= -2;
+                        else
+                        {
+                            character1.Speed *= -1/2;
+                            character1.MultipleOfTwo = false;
+                        }
                     }
                 }
 

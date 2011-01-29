@@ -29,6 +29,9 @@ namespace TooCuteToLive
         float mWepTime;
 
         private Texture2D cursor;
+
+        private Texture2D level;
+
         private HUD hud;
 
         Camera mCam;
@@ -62,10 +65,10 @@ namespace TooCuteToLive
 
             graphics.ApplyChanges();
 
-            mCharacterManager = CharacterManager.GetInstance(Content);
-            mCharacterManager.addCharacter("charMedium", Vector2.Zero, Frames.CHAR_MED_FRAMES);
+            mCharacterManager = CharacterManager.GetInstance(Content, graphics);
+            mCharacterManager.addCharacter("charMedium", Frames.CHAR_MED_FRAMES);
 
-            mRb = new Weapon("rainbow", Content);
+            mRb = new Weapon("rainbow", Content, graphics);
             mWepTime = 0;
 
             mMenu = new Menu(this);
@@ -93,6 +96,7 @@ namespace TooCuteToLive
 
             hud.Load(Content, graphics.GraphicsDevice.Viewport);
             cursor = Content.Load<Texture2D>("Cursor/fluffycursor");
+            level = Content.Load<Texture2D>("Levels/LevelFPO");
         }
 
         /// <summary>
@@ -132,11 +136,11 @@ namespace TooCuteToLive
                     }
                     else if (keystate.IsKeyDown(Keys.A) && prevKeyState.IsKeyUp(Keys.A))
                     {
-                        mCharacterManager.addCharacter("charMedium", Vector2.Zero, Frames.CHAR_MED_FRAMES);
+                        mCharacterManager.addCharacter("charMedium", Frames.CHAR_MED_FRAMES);
                     }
 
                     mItemManager.Update(gameTime);
-                    mCharacterManager.Update(gameTime, mItemManager.itemList, graphics);
+                    mCharacterManager.Update(gameTime, mItemManager.itemList);
                     mRb.Update(gameTime, mouseStateCurr.Y);
 
                     break;
@@ -180,6 +184,14 @@ namespace TooCuteToLive
             switch (mCurrentState)
             {
                 case GameStates.GAME:
+                    Console.WriteLine("Width: " + (float)graphics.GraphicsDevice.Viewport.Width / (float)level.Width);
+                    Console.WriteLine("Height: " + (float)graphics.GraphicsDevice.Viewport.Height / (float)level.Height);
+
+                    spriteBatch.Draw(level, new Vector2(0.0f, 0.0f), null, Color.White, 0.0f, new Vector2(0.0f, 0.0f), 
+                                     new Vector2((float)graphics.GraphicsDevice.Viewport.Width / (float)level.Width, 
+                                                 (float)graphics.GraphicsDevice.Viewport.Height / (float)level.Height),
+                                     SpriteEffects.None, 0.0f);
+                    //spriteBatch.Draw(level, Vector2.Zero, Color.White);
                     mCharacterManager.Draw(spriteBatch);
                     mItemManager.Draw(spriteBatch);
                     mRb.Draw(spriteBatch);
