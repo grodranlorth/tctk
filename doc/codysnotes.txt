@@ -1,0 +1,20 @@
+Game state
+	Manager - Monster/Terrain tracker
+		Coll. detection
+	all objects
+		update
+		draw
+	get input
+
+
+===============================================================================
+
+Object Manager
+	linked list/dynamic array of creatures
+	linked list/dynamic array of terrain objects
+
+	check for hits on all objects
+
+	all objects
+		draw 
+		update
