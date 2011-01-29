@@ -48,7 +48,6 @@
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Compile Include="AnimatedSprites\charMedium.png">
       <Name>charMedium</Name>

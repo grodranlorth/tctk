@@ -2,22 +2,22 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>AnimatedSprites\charMedium.png</Source>
-      <Name>AnimatedSprites\charMedium</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Spencers\tctl1\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\AnimatedSprites\charMedium.xnb</Output>
-      <Time>2011-01-28T23:55:40.2892135-07:00</Time>
-    </Item>
-    <Item>
       <Source>Fonts\kootenay.spritefont</Source>
       <Name>Fonts\kootenay</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Spencers\tctl1\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\Fonts\kootenay.xnb</Output>
+      <Output>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\Fonts\kootenay.xnb</Output>
       <Time>2011-01-28T22:27:55.1690659-07:00</Time>
+    </Item>
+    <Item>
+      <Source>AnimatedSprites\charMedium.png</Source>
+      <Name>AnimatedSprites\charMedium</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\AnimatedSprites\charMedium.xnb</Output>
+      <Time>2011-01-29T01:06:14.666406-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -25,10 +25,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Spencers\tctl1\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLiveContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Spencers\tctl1\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Spencers\tctl1\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLiveContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Spencers\tctl1\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLiveContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLiveContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

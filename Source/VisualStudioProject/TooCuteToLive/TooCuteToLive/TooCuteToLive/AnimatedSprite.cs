@@ -91,5 +91,15 @@ namespace TooCuteToLive
             mFrame = 0;
             mElapsed = 0.0f;
         }
+
+        public float getHeight()
+        {
+            return mTexture.Height;
+        }
+
+        public float getWidth()
+        {
+            return mTexture.Width;
+        }
     }
 }

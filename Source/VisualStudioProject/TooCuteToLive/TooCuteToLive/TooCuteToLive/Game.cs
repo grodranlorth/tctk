@@ -19,10 +19,7 @@ namespace TooCuteToLive
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Character mCharacter;
-        private Texture2D charTexture;
-
-        private AnimatedSprite charMedium;
+        private CharacterManager mCharacterManager;
 
         MouseState mouseStateCurr, mouseStatePrev;
 
@@ -57,6 +54,9 @@ namespace TooCuteToLive
 
             graphics.ApplyChanges();
 
+            mCharacterManager = new CharacterManager(Content);
+            mCharacterManager.addCharacter("charMedium", Vector2.Zero);
+
             base.Initialize();
         }
 
@@ -67,15 +67,7 @@ namespace TooCuteToLive
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            
-//            charTexture = Content.Load<Texture2D>("Character/test");
-            kootenay = Content.Load<SpriteFont>("Fonts/kootenay");
-
-            mCharacter = new Character(charTexture, new Vector2(50.0f, 50.0f));
-            charMedium = new AnimatedSprite();
-            charMedium.Load(Content, "charMedium", 16, 16);
-            
+            spriteBatch = new SpriteBatch(GraphicsDevice);            
         }
 
         /// <summary>
@@ -89,8 +81,7 @@ namespace TooCuteToLive
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            mCharacter.Update(gameTime);
-            charMedium.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+            mCharacterManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -103,8 +94,7 @@ namespace TooCuteToLive
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-//            mCharacter.Draw(gameTime, spriteBatch);
-            charMedium.Draw(spriteBatch, Vector2.Zero);
+            mCharacterManager.Draw(spriteBatch);
 
             base.Draw(gameTime);
         }

@@ -1,3 +1,4 @@
 c:\users\spencers\documents\visual studio 2010\Projects\TooCuteToLive\TooCuteToLive\TooCuteToLiveContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Spencers\tctl\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLiveContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Spencers\tctl1\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLiveContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLiveContent\obj\x86\Debug\ResolveAssemblyReference.cache
