@@ -91,16 +91,40 @@ namespace TooCuteToLive
 
         public void Update(GameTime gameTime)
         {
-            mPosition.X+= xspeed;
-            mPosition.Y+= yspeed;
-            if (mPosition.X > 800)
-                xspeed *= -1;
-            else if (mPosition.X <= 0)
-                xspeed *= -1;
-            if (mPosition.Y >= 600)
-                yspeed *= -1;
-            else if (mPosition.Y <= 0)
-                yspeed *= -1;
+            if (mStates == states.SEEKING)
+            {
+                float x = mPosition.X - destination.X;
+                float y = mPosition.Y - destination.Y;
+                if (x == 0 && y == 0)
+                {
+                    
+                }
+            }
+            else if (mStates == states.EATING)
+            {
+
+            }
+            else if (mStates == states.ONFIRE)
+            {
+
+            }
+            else if (mStates == states.RUNNINGAWAY)
+            {
+
+            }
+            else 
+            {
+                mPosition.X += xspeed;
+                mPosition.Y += yspeed;
+                if (mPosition.X > 800)
+                    xspeed *= -1;
+                else if (mPosition.X <= 0)
+                    xspeed *= -1;
+                if (mPosition.Y >= 600)
+                    yspeed *= -1;
+                else if (mPosition.Y <= 0)
+                    yspeed *= -1;  
+            }
             bSphere.Center = new Vector3(mPosition.X + mSprite.getWidth() / 2, mPosition.Y + mSprite.getHeight() / 2, 0.0f);
             mSprite.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
         }
