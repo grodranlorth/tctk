@@ -23,6 +23,9 @@ namespace TooCuteToLive
 
         MouseState mouseStateCurr, mouseStatePrev;
 
+        Weapon mRb;
+        float mWepTime;
+
         #region HUD
 
         private SpriteFont kootenay;
@@ -57,6 +60,9 @@ namespace TooCuteToLive
             mCharacterManager = new CharacterManager(Content);
             mCharacterManager.addCharacter("charMedium", Vector2.Zero);
 
+            mRb = new Weapon("rainbow", Content);
+            mWepTime = 0;
+
             base.Initialize();
         }
 
@@ -81,8 +87,19 @@ namespace TooCuteToLive
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            mCharacterManager.Update(gameTime);
+            mouseStateCurr = Mouse.GetState();
 
+            if (mouseStateCurr.LeftButton == ButtonState.Pressed)
+            {
+                Vector2 pos = new Vector2(mouseStateCurr.X, mouseStateCurr.Y);
+                mRb.Strike(pos, 1);
+                mWepTime = 1;
+            }
+
+            mCharacterManager.Update(gameTime);
+            mRb.Update(gameTime);
+
+            mouseStatePrev = mouseStateCurr;
             base.Update(gameTime);
         }
 
@@ -94,9 +111,15 @@ namespace TooCuteToLive
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            spriteBatch.Begin();
+
             mCharacterManager.Draw(spriteBatch);
+            mRb.Draw(spriteBatch);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
+
     }
 }

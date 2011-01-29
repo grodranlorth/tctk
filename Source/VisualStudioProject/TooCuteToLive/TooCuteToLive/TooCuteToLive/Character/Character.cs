@@ -15,7 +15,7 @@ namespace TooCuteToLive
     {
         private string mTextureName;
         private Vector2 mPosition;
-        private float speed;
+        private float xspeed, yspeed;
         private BoundingSphere bSphere;
         private AnimatedSprite mSprite;
 
@@ -53,7 +53,7 @@ namespace TooCuteToLive
             mPosition = position;
             mAge = age.MEDIUM;
             mStates = states.WALKING;
-            speed = 1.0f;
+            xspeed = yspeed = 1.0f;
             mSprite = new AnimatedSprite();
             mSprite.Load(content, mTextureName, 16, 0.2f);
             bSphere = new BoundingSphere(new Vector3(position.X + mSprite.getWidth() / 2, position.Y + mSprite.getHeight() / 2, 0.0f), mSprite.getWidth() / 2);
@@ -67,8 +67,16 @@ namespace TooCuteToLive
 
         public void Update(GameTime gameTime)
         {
-            mPosition.X+= speed;
-            mPosition.Y+= speed;
+            mPosition.X+= xspeed;
+            mPosition.Y+= yspeed;
+            if (mPosition.X > 800)
+                xspeed *= -1;
+            else if (mPosition.X <= 0)
+                xspeed *= -1;
+            if (mPosition.Y >= 600)
+                yspeed *= -1;
+            else if (mPosition.Y <= 0)
+                yspeed *= -1;
             bSphere.Center = new Vector3(mPosition.X + mSprite.getWidth() / 2, mPosition.Y + mSprite.getHeight() / 2, 0.0f);
             mSprite.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
         }

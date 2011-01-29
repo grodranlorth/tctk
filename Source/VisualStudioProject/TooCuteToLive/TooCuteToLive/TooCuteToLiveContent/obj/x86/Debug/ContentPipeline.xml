@@ -19,6 +19,15 @@
       <Output>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\AnimatedSprites\charMedium.xnb</Output>
       <Time>2011-01-29T01:06:14.666406-07:00</Time>
     </Item>
+    <Item>
+      <Source>Weapons\rainbow.png</Source>
+      <Name>Weapons\rainbow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\Weapons\rainbow.xnb</Output>
+      <Time>2011-01-29T03:09:41.6820631-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

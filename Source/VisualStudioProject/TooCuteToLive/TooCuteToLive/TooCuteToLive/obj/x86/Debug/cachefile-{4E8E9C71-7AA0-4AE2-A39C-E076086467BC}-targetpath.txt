@@ -1,2 +1,3 @@
 Content\Fonts\kootenay.xnb
 Content\AnimatedSprites\charMedium.xnb
+Content\Weapons\rainbow.xnb

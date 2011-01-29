@@ -23,10 +23,11 @@ C:\Users\Spencers\tctl1\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteT
 C:\Users\Spencers\tctl1\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\obj\x86\Debug\TooCuteToLive.exe
 C:\Users\Spencers\tctl1\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\obj\x86\Debug\TooCuteToLive.pdb
 C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\Fonts\kootenay.xnb
+C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\AnimatedSprites\charMedium.xnb
 C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\TooCuteToLive.exe
 C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\TooCuteToLive.pdb
 C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\obj\x86\Debug\TooCuteToLive.exe
 C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\obj\x86\Debug\TooCuteToLive.pdb
-C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\AnimatedSprites\charMedium.xnb
+C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\Weapons\rainbow.xnb
