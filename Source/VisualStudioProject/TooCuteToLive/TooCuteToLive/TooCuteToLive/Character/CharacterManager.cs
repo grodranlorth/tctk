@@ -53,13 +53,14 @@ namespace TooCuteToLive
 
         public void Update(GameTime gameTime, List<Item> itemList)
         {
+            List<Character> removeList = new List<Character>();
             mItemList = itemList;
             foreach (Character character in characterList)
             {
                 character.Update(gameTime);
                 if (mItemList.Count > 0)
                 {
-                    character.setSeek(true);
+//                    character.setSeek(true);
                     foreach (Item item in mItemList)
                     {
 
@@ -72,8 +73,17 @@ namespace TooCuteToLive
                         }
                     }
                 }
-                else if (mItemList.Count == 0)
-                    character.setSeek(false);
+//                else if (mItemList.Count == 0)
+//                    character.setSeek(false);
+
+                if (character.Remove == true)
+                {
+                     removeList.Add(character);
+                }
+            }
+            if (removeList.Count > 0)
+            {
+                characterList.Remove(removeList.ElementAt(0));
             }
         }
 
@@ -96,7 +106,6 @@ namespace TooCuteToLive
             {
                 if (character.Collides(point))
                 {
-//                    character.changeImage("charMediumOnFire");
                     character.kill();
                 }
             }

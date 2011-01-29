@@ -1,7 +1,9 @@
 Content\Fonts\kootenay.xnb
 Content\AnimatedSprites\charMedium.xnb
-Content\Weapons\rainbow.xnb
+Content\Items\cupcake.xnb
 Content\HUD\FluffyHUD.xnb
+Content\Cursor\fluffycursor.xnb
+Content\Weapons\rainbow.xnb
 Content\AnimatedSprites\charMediumOnFire.xnb
 Content\Menu\backtomainmenu_active.xnb
 Content\Menu\backtomainmenu_nonactive.xnb
@@ -11,8 +13,6 @@ Content\Menu\howtoplay_active.xnb
 Content\Menu\howtoplay_nonactive.xnb
 Content\Menu\startbutton_active.xnb
 Content\Menu\startbutton_nonactive.xnb
-Content\Items\cupcake.xnb
-Content\Cursor\fluffycursor.xnb
 Content\HUD\Cupcake_icon.xnb
 Content\HUD\rainbowmissle_icon.xnb
 Content\HUD\Cupcake_icon_selected.xnb

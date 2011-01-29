@@ -20,13 +20,13 @@
       <Time>2011-01-29T01:06:14.666406-07:00</Time>
     </Item>
     <Item>
-      <Source>Weapons\rainbow.png</Source>
-      <Name>Weapons\rainbow</Name>
+      <Source>Items\cupcake.png</Source>
+      <Name>Items\cupcake</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\Weapons\rainbow.xnb</Output>
-      <Time>2011-01-29T05:37:55.8837823-07:00</Time>
+      <Output>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\Items\cupcake.xnb</Output>
+      <Time>2011-01-29T07:06:27.0465635-07:00</Time>
     </Item>
     <Item>
       <Source>HUD\FluffyHUD.jpg</Source>
@@ -36,6 +36,24 @@
       <Options>None</Options>
       <Output>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\HUD\FluffyHUD.xnb</Output>
       <Time>2011-01-29T04:46:48.1423176-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Cursor\fluffycursor.png</Source>
+      <Name>Cursor\fluffycursor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\Cursor\fluffycursor.xnb</Output>
+      <Time>2011-01-29T07:57:08.557528-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Weapons\rainbow.png</Source>
+      <Name>Weapons\rainbow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\Weapons\rainbow.xnb</Output>
+      <Time>2011-01-29T05:37:55.8837823-07:00</Time>
     </Item>
     <Item>
       <Source>AnimatedSprites\charMediumOnFire.png</Source>
@@ -117,24 +135,6 @@
       <Options>None</Options>
       <Output>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\Menu\startbutton_nonactive.xnb</Output>
       <Time>2011-01-29T06:06:36.6562049-07:00</Time>
-    </Item>
-    <Item>
-      <Source>Items\cupcake.png</Source>
-      <Name>Items\cupcake</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\Items\cupcake.xnb</Output>
-      <Time>2011-01-29T07:06:27.0465635-07:00</Time>
-    </Item>
-    <Item>
-      <Source>Cursor\fluffycursor.png</Source>
-      <Name>Cursor\fluffycursor</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\Cursor\fluffycursor.xnb</Output>
-      <Time>2011-01-29T07:57:08.557528-07:00</Time>
     </Item>
     <Item>
       <Source>HUD\Cupcake_icon.jpg</Source>

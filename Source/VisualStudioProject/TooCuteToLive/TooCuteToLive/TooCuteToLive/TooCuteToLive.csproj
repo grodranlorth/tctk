@@ -109,9 +109,12 @@
   <ItemGroup>
     <Compile Include="AnimatedSprite.cs" />
     <Compile Include="AudioManager.cs" />
+    <Compile Include="Camera.cs" />
     <Compile Include="Character\Character.cs" />
     <Compile Include="Character\CharacterManager.cs" />
+    <Compile Include="Frames.cs" />
     <Compile Include="GameStates.cs" />
+    <Compile Include="HUD.cs" />
     <Compile Include="Item\Item.cs" />
     <Compile Include="Item\ItemManager.cs" />
     <Compile Include="Menu.cs" />

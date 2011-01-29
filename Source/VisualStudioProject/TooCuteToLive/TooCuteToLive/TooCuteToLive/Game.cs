@@ -28,20 +28,15 @@ namespace TooCuteToLive
         Weapon mRb;
         float mWepTime;
 
-        private Texture2D fluffyHUD;
         private Texture2D cursor;
-        private Texture2D cupcakeIcon;
-        private Texture2D rainbowIcon;
-        private Texture2D cupcakeIconSel;
-        private Texture2D rainbowIconSel;
+        private HUD hud;
+
+        Camera mCam;
 
         private GameStates mCurrentState = GameStates.MENU;
 
         private Menu mMenu;
         private Item mItem;
-
-        private const int CHAR_MED_FRAMES = 16;
-        private const int CHAR_MED_ON_FIRE_FRAMES = 12;
 
         public Game()
         {
@@ -68,7 +63,7 @@ namespace TooCuteToLive
             graphics.ApplyChanges();
 
             mCharacterManager = CharacterManager.GetInstance(Content);
-            mCharacterManager.addCharacter("charMediumOnFire", Vector2.Zero, CHAR_MED_ON_FIRE_FRAMES);
+            mCharacterManager.addCharacter("charMedium", Vector2.Zero, Frames.CHAR_MED_FRAMES);
 
             mRb = new Weapon("rainbow", Content);
             mWepTime = 0;
@@ -76,6 +71,10 @@ namespace TooCuteToLive
             mMenu = new Menu(this);
 
             mItemManager = new ItemManager(Content);
+
+            mCam = new Camera(graphics.GraphicsDevice.Viewport);
+
+            hud = new HUD();
 
             base.Initialize();
         }
@@ -92,12 +91,8 @@ namespace TooCuteToLive
 //            mCharacterManager.Load();
             mMenu.Load(Content);
 
-            fluffyHUD = Content.Load<Texture2D>("HUD/FluffyHUD");
+            hud.Load(Content, graphics.GraphicsDevice.Viewport);
             cursor = Content.Load<Texture2D>("Cursor/fluffycursor");
-            cupcakeIcon = Content.Load<Texture2D>("HUD/Cupcake_icon");
-            cupcakeIconSel = Content.Load<Texture2D>("HUD/Cupcake_icon_selected");
-            rainbowIcon = Content.Load<Texture2D>("HUD/rainbowmissle_icon");
-            rainbowIconSel = Content.Load<Texture2D>("HUD/rainbowmissle_icon_selected");
         }
 
         /// <summary>
@@ -114,10 +109,14 @@ namespace TooCuteToLive
 
             mouseStateCurr = Mouse.GetState();
             keystate = Keyboard.GetState();
-            
+
             switch (mCurrentState)
             {
                 case GameStates.GAME:
+                    hud.Update(gameTime);
+
+                    mCam.Zoom += (mouseStatePrev.ScrollWheelValue - mouseStateCurr.ScrollWheelValue)/100;
+
                     if (mouseStateCurr.LeftButton == ButtonState.Pressed && 
                         mouseStatePrev.LeftButton == ButtonState.Released)
                     {
@@ -133,7 +132,7 @@ namespace TooCuteToLive
                     }
                     else if (keystate.IsKeyDown(Keys.A) && prevKeyState.IsKeyUp(Keys.A))
                     {
-                        mCharacterManager.addCharacter("charMedium", Vector2.Zero, CHAR_MED_FRAMES);
+                        mCharacterManager.addCharacter("charMedium", Vector2.Zero, Frames.CHAR_MED_FRAMES);
                     }
 
                     mItemManager.Update(gameTime);
@@ -168,7 +167,13 @@ namespace TooCuteToLive
         {
             GraphicsDevice.Clear(Color.White);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Immediate,
+                                BlendState.AlphaBlend,
+                                SamplerState.LinearClamp,
+                                DepthStencilState.None,
+                                RasterizerState.CullCounterClockwise,
+                                null,
+                                mCam.get_transformation());
 
             switch (mCurrentState)
             {
@@ -176,11 +181,7 @@ namespace TooCuteToLive
                     mCharacterManager.Draw(spriteBatch);
                     mItemManager.Draw(spriteBatch);
                     mRb.Draw(spriteBatch);
-
-                    spriteBatch.Draw(fluffyHUD, new Vector2(graphics.GraphicsDevice.Viewport.Width / 10, graphics.GraphicsDevice.Viewport.Height - 150.0f), Color.White);
-                    spriteBatch.Draw(cupcakeIcon, new Vector2(graphics.GraphicsDevice.Viewport.Width - 150, 50.0f), Color.White);
-                    spriteBatch.Draw(rainbowIconSel, new Vector2(graphics.GraphicsDevice.Viewport.Width - 250, 50.0f), Color.White); 
-
+ 
                     break;
 
                 case GameStates.MENU:
@@ -195,10 +196,12 @@ namespace TooCuteToLive
                     /* TODO - Add score draw stuff */
                     break;
             }
-
             spriteBatch.Draw(cursor, new Vector2(mouseStateCurr.X, mouseStateCurr.Y), Color.White);
 
             spriteBatch.End();
+
+            if (mCurrentState == GameStates.GAME)
+                hud.Draw(spriteBatch, graphics);
 
             base.Draw(gameTime);
         }

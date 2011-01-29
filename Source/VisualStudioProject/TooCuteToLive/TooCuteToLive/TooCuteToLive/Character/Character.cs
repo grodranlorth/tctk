@@ -21,7 +21,12 @@ namespace TooCuteToLive
         private int distance;
         private Vector2 destination;
 
+        private float timeOnFire;
+        private float respawnRate;
+
         private ContentManager mContent;
+
+        private bool remove;
 
         enum age
         {
@@ -38,7 +43,8 @@ namespace TooCuteToLive
             RUNNINGAWAY,
             ONFIRE,
             EATING,
-            SEEKING
+            SEEKING,
+            DEAD
         };
 
         states mStates;
@@ -73,36 +79,65 @@ namespace TooCuteToLive
             bSphere = new BoundingSphere(new Vector3(position.X + mSprite.getWidth() / 2, position.Y + mSprite.getHeight() / 2, 0.0f), mSprite.getWidth() / 2);
             distance = 10000;
             destination = Vector2.Zero;
+            timeOnFire = 5.0f;
+            respawnRate = 3.0f;
+            remove = false;
         }
 
-//        public void changeImage(string textureName)
-//        {
-//            mTextureName = textureName;
-//            mSprite.Load(mContent, mTextureName, CHAR_MED_ON_FIRE_FRAMES, 0.2f);
-//        }
-
-        public void setSeek(bool seek)
+        public void changeImage(string textureName, int numFrames)
         {
-            if (seek == true && mStates == states.WALKING)
-                mStates = states.SEEKING;
-            else if (seek == false)
-                mStates = states.WALKING;
+            mTextureName = textureName;
+            mSprite.Load(mContent, mTextureName, numFrames, 0.1f);
         }
+
+ //       public void setSeek(bool seek)
+ //       {
+ //           if (seek == true && mStates == states.WALKING)
+ //               mStates = states.SEEKING;
+ //           else if (seek == false)
+ //               mStates = states.WALKING;
+ //       }
 
         public void Update(GameTime gameTime)
         {
-            mPosition.X+= xspeed;
-            mPosition.Y+= yspeed;
-            if (mPosition.X > 800)
-                xspeed *= -1;
-            else if (mPosition.X <= 0)
-                xspeed *= -1;
-            if (mPosition.Y >= 600)
-                yspeed *= -1;
-            else if (mPosition.Y <= 0)
-                yspeed *= -1;
-            bSphere.Center = new Vector3(mPosition.X + mSprite.getWidth() / 2, mPosition.Y + mSprite.getHeight() / 2, 0.0f);
+            if (mStates != states.DEAD)
+            {
+                mPosition.X+= xspeed;
+                mPosition.Y+= yspeed;
+                if (mPosition.X > 800)
+                    xspeed *= -1;
+                else if (mPosition.X <= 0)
+                    xspeed *= -1;
+                if (mPosition.Y > 600)
+                    yspeed *= -1;
+                else if (mPosition.Y <= 0)
+                    yspeed *= -1;
+                bSphere.Center = new Vector3(mPosition.X + mSprite.getWidth() / 2, mPosition.Y + mSprite.getHeight() / 2, 0.0f);
+            }
             mSprite.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+
+            if (mStates == states.ONFIRE)
+            {
+                xspeed = 4;
+                yspeed = 4;
+
+                timeOnFire -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (timeOnFire <= 0)
+                {
+                    mStates = states.DEAD;
+                    timeOnFire = 5.0f;
+                }
+            }
+            else if (mStates == states.DEAD)
+            {
+                //changeImage("charMediumDead", Frames.CHAR_MED_DEAD_FRAMES);
+                respawnRate -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (respawnRate <= 0)
+                {
+                    remove = true;
+                    respawnRate = 3.0f;
+                }
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -123,6 +158,13 @@ namespace TooCuteToLive
         public void kill()
         {
             mStates = states.ONFIRE;
+            changeImage("charMediumOnFire", Frames.CHAR_MED_ON_FIRE_FRAMES);
+        }
+
+        public bool Remove
+        {
+            get { return remove; }
+            set { remove = value; }
         }
     }
 }
