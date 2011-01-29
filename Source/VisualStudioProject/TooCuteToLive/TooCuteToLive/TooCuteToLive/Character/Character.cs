@@ -37,7 +37,7 @@ namespace TooCuteToLive
 
         age mAge;
 
-        enum states
+        public enum states
         {
             WALKING,
             RUNNINGAWAY,
@@ -98,29 +98,16 @@ namespace TooCuteToLive
  //               mStates = states.WALKING;
  //       }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, GraphicsDeviceManager graphics)
         {
             if (mStates != states.DEAD)
             {
-                mPosition.X+= mSpeed.X;
-                mPosition.Y+= mSpeed.Y;
-                if (mPosition.X > 800)
-                    mSpeed.X *= -1;
-                else if (mPosition.X <= 0)
-                    mSpeed.X *= -1;
-                if (mPosition.Y > 600)
-                    mSpeed.Y *= -1;
-                else if (mPosition.Y <= 0)
-                    mSpeed.Y *= -1;
                 bSphere.Center = new Vector3(mPosition.X + mSprite.getWidth() / 2, mPosition.Y + mSprite.getHeight() / 2, 0.0f);
             }
             mSprite.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
             if (mStates == states.ONFIRE)
             {
-                mSpeed.X = 4;
-                mSpeed.Y = 4;
-
                 timeOnFire -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (timeOnFire <= 0)
                 {
@@ -138,6 +125,17 @@ namespace TooCuteToLive
                     respawnRate = 3.0f;
                 }
             }
+            mPosition.X += mSpeed.X;
+            mPosition.Y += mSpeed.Y;
+
+            if (mPosition.X + getWidth() > graphics.GraphicsDevice.Viewport.Width)
+                mSpeed.X *= -1;
+            else if (mPosition.X <= 0)
+                mSpeed.X *= -1;
+            if (mPosition.Y + getHeight() > graphics.GraphicsDevice.Viewport.Height)
+                mSpeed.Y *= -1;
+            else if (mPosition.Y <= 0)
+                mSpeed.Y *= -1;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -157,6 +155,9 @@ namespace TooCuteToLive
 
         public void kill()
         {
+            mSpeed.X = 4;
+            mSpeed.Y = 1;
+
             mStates = states.ONFIRE;
             changeImage("charMediumOnFire", Frames.CHAR_MED_ON_FIRE_FRAMES);
         }
@@ -177,5 +178,26 @@ namespace TooCuteToLive
             get { return mSpeed; }
             set { mSpeed = value; }
         }
+
+        public bool OnFire()
+        {
+            return mStates == states.ONFIRE;
+        }
+
+        public void SetOnFire()
+        {
+            kill();
+        }
+
+        public float getWidth()
+        {
+            return mSprite.getWidth();
+        }
+
+        public float getHeight()
+        {
+            return mSprite.getHeight();
+        }
+
     }
 }

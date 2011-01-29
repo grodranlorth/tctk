@@ -51,13 +51,13 @@ namespace TooCuteToLive
             characterList.Add(new Character(textureName, position, mContent, frameCount));
         }
 
-        public void Update(GameTime gameTime, List<Item> itemList)
+        public void Update(GameTime gameTime, List<Item> itemList, GraphicsDeviceManager graphics)
         {
             List<Character> removeList = new List<Character>();
             mItemList = itemList;
             foreach (Character character in characterList)
             {
-                character.Update(gameTime);
+                character.Update(gameTime, graphics);
                 if (mItemList.Count > 0)
                 {
 //                    character.setSeek(true);
@@ -80,6 +80,12 @@ namespace TooCuteToLive
                 {
                     if (character.Collides(character1.BSphere))
                     {
+                        if (character.OnFire())
+                            character1.SetOnFire();
+
+                        else if (character1.OnFire())
+                            character.SetOnFire();
+
                         character.Speed *= -1;
                         character1.Speed *= -1;
                     }
@@ -103,11 +109,6 @@ namespace TooCuteToLive
                 character.Draw(spriteBatch);
             }
         }
-
- //       public bool Collides(Vector3 point)
- //       {
- //           return true;
- //       }
 
         public void pointKill(Vector2 point)
         {

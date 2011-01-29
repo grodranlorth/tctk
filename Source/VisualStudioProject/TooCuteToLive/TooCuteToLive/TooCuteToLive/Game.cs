@@ -136,7 +136,7 @@ namespace TooCuteToLive
                     }
 
                     mItemManager.Update(gameTime);
-                    mCharacterManager.Update(gameTime, mItemManager.itemList);
+                    mCharacterManager.Update(gameTime, mItemManager.itemList, graphics);
                     mRb.Update(gameTime, mouseStateCurr.Y);
 
                     break;
