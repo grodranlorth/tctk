@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>AnimatedSprites\charMedium.png</Source>
+      <Name>AnimatedSprites\charMedium</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Spencers\tctl1\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\AnimatedSprites\charMedium.xnb</Output>
+      <Time>2011-01-28T23:55:40.2892135-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\kootenay.spritefont</Source>
+      <Name>Fonts\kootenay</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Spencers\tctl1\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\Fonts\kootenay.xnb</Output>
+      <Time>2011-01-28T22:27:55.1690659-07:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>Reach</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\Spencers\tctl1\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLiveContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Spencers\tctl1\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Spencers\tctl1\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLiveContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Spencers\tctl1\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T13:41:18-06:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T13:41:18-06:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T13:41:18-06:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T13:41:18-06:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T13:41:18-06:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T13:41:18-06:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2010-11-12T01:18:36.1977489-07:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>

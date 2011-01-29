@@ -1,0 +1,2 @@
+Content\AnimatedSprites\charMedium.xnb
+Content\Fonts\kootenay.xnb
