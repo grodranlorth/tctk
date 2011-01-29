@@ -18,11 +18,11 @@ namespace TooCuteToLive
         private float xspeed, yspeed;
         private BoundingSphere bSphere;
         private AnimatedSprite mSprite;
+        private int distance;
+        private Vector2 destination;
 
-        /* Age of the character */
-        /* 1 = Baby */
-        /* 2 = Medium */
-        /* 3 = Fat */
+        private ContentManager mContent;
+
         enum age
         {
             BABY,
@@ -32,37 +32,61 @@ namespace TooCuteToLive
 
         age mAge;
 
-        /* State of the character */
-        /* 1 = Walking */
-        /* 2 = Running Away */
-        /* 3 = OnFire */
-        /* 4 = Eating */
         enum states
         {
             WALKING,
             RUNNINGAWAY,
             ONFIRE,
-            EATING
+            EATING,
+            SEEKING
         };
 
         states mStates;
 
-        public Character(string textureName, Vector2 position, ContentManager content)
+        public Vector2 Position
         {
+            get { return mPosition; }
+        }
+
+        public int Distance
+        {
+            get { return distance; }
+            set { distance = value; }
+        }
+
+        public Vector2 Destination
+        {
+            get { return destination; }
+            set { destination = value; }
+        }
+
+        public Character(string textureName, Vector2 position, ContentManager content, int frameCount)
+        {
+            mContent = content;
             mTextureName = textureName;
             mPosition = position;
             mAge = age.MEDIUM;
             mStates = states.WALKING;
             xspeed = yspeed = 1.0f;
             mSprite = new AnimatedSprite();
-            mSprite.Load(content, mTextureName, 16, 0.2f);
+            mSprite.Load(mContent, mTextureName, frameCount, 0.05f);
             bSphere = new BoundingSphere(new Vector3(position.X + mSprite.getWidth() / 2, position.Y + mSprite.getHeight() / 2, 0.0f), mSprite.getWidth() / 2);
+            distance = 10000;
+            destination = Vector2.Zero;
         }
 
-        public void Load(ContentManager content)
+//        public void changeImage(string textureName)
+//        {
+//            mTextureName = textureName;
+//            mSprite.Load(mContent, mTextureName, CHAR_MED_ON_FIRE_FRAMES, 0.2f);
+//        }
+
+        public void setSeek(bool seek)
         {
-            
-            
+            if (seek == true && mStates == states.WALKING)
+                mStates = states.SEEKING;
+            else if (seek == false)
+                mStates = states.WALKING;
         }
 
         public void Update(GameTime gameTime)

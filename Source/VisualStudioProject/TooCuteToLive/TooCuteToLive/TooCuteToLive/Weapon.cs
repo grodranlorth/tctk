@@ -14,8 +14,12 @@ namespace TooCuteToLive
     {
         private Vector2 mStrikePos;
         private float mStrikeTime;
-        private float mScale;
+        private float mOnScreenTime;
+        private Vector2 mScale;
         private Texture2D mTexture;
+        private float mYValue;
+
+        private CharacterManager mCharManager;
 
         enum states
         {
@@ -28,14 +32,17 @@ namespace TooCuteToLive
 
         public Weapon(string textureName, ContentManager cm)
         {
+            mCharManager = CharacterManager.GetInstance(cm);
             mTexture = cm.Load<Texture2D>("Weapons/" + textureName);
-            mScale = 1;
+            mScale = new Vector2(1.0f, 0.0f);
             mStrikeTime = 0;
             mStrikePos = Vector2.Zero;
             mState = states.NORMAL;
+            mOnScreenTime = 0.5f;
+            mYValue = 0.0f;
         }
 
-        public void Update(GameTime gt)
+        public void Update(GameTime gt, float yValue)
         {
             if (mState == states.MOVING)
             {
@@ -46,22 +53,40 @@ namespace TooCuteToLive
             else if (mState == states.STRIKING)
             {
                 /* animation */
+                if (mScale.Y <= (mYValue + 50) / mTexture.Height)
+                    mScale.Y += 0.1f;
+                mCharManager.pointKill(mStrikePos);
 
-                //mState = states.NORMAL;
+                mOnScreenTime -= (float)gt.ElapsedGameTime.TotalSeconds;
+                if (mOnScreenTime <= 0)
+                {
+                    mState = states.NORMAL;
+                    mOnScreenTime = 0.5f;
+                    mScale.Y = 0.0f;
+                }
             }
         }
 
-        public void Strike(Vector2 pos, float waittime)
+        public void Strike(Vector2 pos, float waittime, float yValue)
         {
             mStrikePos = pos;
             mState = states.MOVING;
             mStrikeTime = waittime;
+            mYValue = yValue;
         }
 
         public void Draw(SpriteBatch sb)
         {
             if (mState == states.STRIKING)
-                sb.Draw(mTexture, new Vector2(mStrikePos.X, 0.0f), Color.White);
+                sb.Draw(mTexture, new Vector2(mStrikePos.X, 0.0f), null, Color.White, 0.0f, 
+                        new Vector2(0.0f, 50.0f), mScale, SpriteEffects.None, 0.0f);
+                //sb.Draw(mTexture, new Vector2(mStrikePos.X, 0.0f), Color.White);
+
+        }
+
+        public float getWidth()
+        {
+            return mTexture.Width;
         }
     }
 }

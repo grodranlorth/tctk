@@ -51,7 +51,7 @@ namespace TooCuteToLive
         /// <summary>
         /// Update function - self explanatory
         /// </summary>
-        /// <param name="elapsed">elapsed time - if calling in GravityShiftMain use (float)gameTime.ElapsedGameTime.TotalSeconds</param>
+        /// <param name="elapsed">elapsed time - use (float)gameTime.ElapsedGameTime.TotalSeconds</param>
         public void Update(float elapsed)
         {
             mElapsed += elapsed;
@@ -96,7 +96,7 @@ namespace TooCuteToLive
 
         public float getWidth()
         {
-            return mTexture.Width;
+            return mTexture.Width / mFrameCount;
         }
     }
 }

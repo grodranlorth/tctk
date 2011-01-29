@@ -15,23 +15,65 @@ namespace TooCuteToLive
     {
         private List<Character> characterList;
         ContentManager mContent;
+        private List<Item> mItemList;
         
-        public CharacterManager(ContentManager content)
+        private static CharacterManager instance = null;
+        public static CharacterManager Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        public static CharacterManager GetInstance(ContentManager content)
+        {
+            if (instance == null)
+            {
+                instance = new CharacterManager(content);
+            }
+            return instance;
+
+        }
+        private CharacterManager(ContentManager content)
         {
             characterList = new List<Character>();
             mContent = content;
         }
 
-        public void addCharacter(string textureName, Vector2 position)
+        public void Load()
         {
-            characterList.Add(new Character(textureName, position, mContent));
+
         }
 
-        public void Update(GameTime gameTime)
+        public void addCharacter(string textureName, Vector2 position, int frameCount)
         {
+            characterList.Add(new Character(textureName, position, mContent, frameCount));
+        }
+
+        public void Update(GameTime gameTime, List<Item> itemList)
+        {
+            mItemList = itemList;
             foreach (Character character in characterList)
             {
                 character.Update(gameTime);
+                if (mItemList.Count > 0)
+                {
+                    character.setSeek(true);
+                    foreach (Item item in mItemList)
+                    {
+
+                        if (character.Distance > Math.Sqrt((double)(character.Position.X - item.Position.X) +
+                                                           (double)(character.Position.X - item.Position.Y)))
+                        {
+                            character.Distance = (int)Math.Sqrt((double)(character.Position.X - item.Position.X) +
+                                                           (double)(character.Position.X - item.Position.Y));
+                            character.Destination = item.Position;
+                        }
+                    }
+                }
+                else if (mItemList.Count == 0)
+                    character.setSeek(false);
             }
         }
 
@@ -54,6 +96,7 @@ namespace TooCuteToLive
             {
                 if (character.Collides(point))
                 {
+//                    character.changeImage("charMediumOnFire");
                     character.kill();
                 }
             }

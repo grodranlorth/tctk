@@ -108,8 +108,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimatedSprite.cs" />
+    <Compile Include="AudioManager.cs" />
     <Compile Include="Character\Character.cs" />
     <Compile Include="Character\CharacterManager.cs" />
+    <Compile Include="GameStates.cs" />
+    <Compile Include="Item\Item.cs" />
+    <Compile Include="Item\ItemManager.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game.cs" />
