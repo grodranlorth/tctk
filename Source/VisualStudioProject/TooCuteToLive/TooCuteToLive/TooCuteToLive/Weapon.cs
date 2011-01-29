@@ -55,7 +55,6 @@ namespace TooCuteToLive
                 /* animation */
                 if (mScale.Y <= (mYValue + 50) / mTexture.Height)
                     mScale.Y += 0.1f;
-                mCharManager.pointKill(mStrikePos);
 
                 mOnScreenTime -= (float)gt.ElapsedGameTime.TotalSeconds;
                 if (mOnScreenTime <= 0)
@@ -64,6 +63,7 @@ namespace TooCuteToLive
                     mOnScreenTime = 0.5f;
                     mScale.Y = 0.0f;
                 }
+                mCharManager.pointKill(mStrikePos);
             }
         }
 

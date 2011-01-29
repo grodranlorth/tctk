@@ -167,13 +167,15 @@ namespace TooCuteToLive
         {
             GraphicsDevice.Clear(Color.White);
 
-            spriteBatch.Begin(SpriteSortMode.Immediate,
-                                BlendState.AlphaBlend,
-                                SamplerState.LinearClamp,
-                                DepthStencilState.None,
-                                RasterizerState.CullCounterClockwise,
-                                null,
-                                mCam.get_transformation());
+//            spriteBatch.Begin(SpriteSortMode.Immediate,
+//                                BlendState.AlphaBlend,
+//                                SamplerState.LinearClamp,
+//                                DepthStencilState.None,
+//                                RasterizerState.CullCounterClockwise,
+//                                null,
+//                                mCam.get_transformation());
+
+            spriteBatch.Begin();
 
             switch (mCurrentState)
             {
@@ -181,7 +183,8 @@ namespace TooCuteToLive
                     mCharacterManager.Draw(spriteBatch);
                     mItemManager.Draw(spriteBatch);
                     mRb.Draw(spriteBatch);
- 
+                    hud.Draw(spriteBatch, graphics);
+
                     break;
 
                 case GameStates.MENU:
@@ -199,9 +202,6 @@ namespace TooCuteToLive
             spriteBatch.Draw(cursor, new Vector2(mouseStateCurr.X, mouseStateCurr.Y), Color.White);
 
             spriteBatch.End();
-
-            if (mCurrentState == GameStates.GAME)
-                hud.Draw(spriteBatch, graphics);
 
             base.Draw(gameTime);
         }

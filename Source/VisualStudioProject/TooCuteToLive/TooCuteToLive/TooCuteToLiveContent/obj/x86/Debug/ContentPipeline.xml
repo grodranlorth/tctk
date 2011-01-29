@@ -172,6 +172,15 @@
       <Output>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\HUD\rainbowmissle_icon_selected.xnb</Output>
       <Time>2011-01-29T08:06:56.7771722-07:00</Time>
     </Item>
+    <Item>
+      <Source>AnimatedSprites\charMediumDeath.png</Source>
+      <Name>AnimatedSprites\charMediumDeath</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\AnimatedSprites\charMediumDeath.xnb</Output>
+      <Time>2011-01-29T13:12:10.6106636-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

@@ -47,3 +47,4 @@ C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteTo
 C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\obj\x86\Debug\TooCuteToLive.exe
 C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\obj\x86\Debug\TooCuteToLive.pdb
+C:\Users\Spencers\github\tctk\Source\VisualStudioProject\TooCuteToLive\TooCuteToLive\TooCuteToLive\bin\x86\Debug\Content\AnimatedSprites\charMediumDeath.xnb

@@ -76,6 +76,15 @@ namespace TooCuteToLive
 //                else if (mItemList.Count == 0)
 //                    character.setSeek(false);
 
+                foreach (Character character1 in characterList)
+                {
+                    if (character.Collides(character1.BSphere))
+                    {
+                        character.Speed *= -1;
+                        character1.Speed *= -1;
+                    }
+                }
+
                 if (character.Remove == true)
                 {
                      removeList.Add(character);
@@ -95,10 +104,10 @@ namespace TooCuteToLive
             }
         }
 
-        public bool Collides(Vector3 point)
-        {
-            return true;
-        }
+ //       public bool Collides(Vector3 point)
+ //       {
+ //           return true;
+ //       }
 
         public void pointKill(Vector2 point)
         {

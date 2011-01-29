@@ -15,7 +15,7 @@ namespace TooCuteToLive
     {
         private string mTextureName;
         private Vector2 mPosition;
-        private float xspeed, yspeed;
+        private Vector2 mSpeed;
         private BoundingSphere bSphere;
         private AnimatedSprite mSprite;
         private int distance;
@@ -73,7 +73,7 @@ namespace TooCuteToLive
             mPosition = position;
             mAge = age.MEDIUM;
             mStates = states.WALKING;
-            xspeed = yspeed = 1.0f;
+            mSpeed = new Vector2(1.0f, 0.25f);
             mSprite = new AnimatedSprite();
             mSprite.Load(mContent, mTextureName, frameCount, 0.05f);
             bSphere = new BoundingSphere(new Vector3(position.X + mSprite.getWidth() / 2, position.Y + mSprite.getHeight() / 2, 0.0f), mSprite.getWidth() / 2);
@@ -102,24 +102,24 @@ namespace TooCuteToLive
         {
             if (mStates != states.DEAD)
             {
-                mPosition.X+= xspeed;
-                mPosition.Y+= yspeed;
+                mPosition.X+= mSpeed.X;
+                mPosition.Y+= mSpeed.Y;
                 if (mPosition.X > 800)
-                    xspeed *= -1;
+                    mSpeed.X *= -1;
                 else if (mPosition.X <= 0)
-                    xspeed *= -1;
+                    mSpeed.X *= -1;
                 if (mPosition.Y > 600)
-                    yspeed *= -1;
+                    mSpeed.Y *= -1;
                 else if (mPosition.Y <= 0)
-                    yspeed *= -1;
+                    mSpeed.Y *= -1;
                 bSphere.Center = new Vector3(mPosition.X + mSprite.getWidth() / 2, mPosition.Y + mSprite.getHeight() / 2, 0.0f);
             }
             mSprite.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
             if (mStates == states.ONFIRE)
             {
-                xspeed = 4;
-                yspeed = 4;
+                mSpeed.X = 4;
+                mSpeed.Y = 4;
 
                 timeOnFire -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (timeOnFire <= 0)
@@ -165,6 +165,17 @@ namespace TooCuteToLive
         {
             get { return remove; }
             set { remove = value; }
+        }
+
+        public BoundingSphere BSphere
+        {
+            get { return bSphere; }
+        }
+
+        public Vector2 Speed
+        {
+            get { return mSpeed; }
+            set { mSpeed = value; }
         }
     }
 }
