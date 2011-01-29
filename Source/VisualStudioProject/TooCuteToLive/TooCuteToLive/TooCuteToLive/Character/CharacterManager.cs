@@ -90,9 +90,9 @@ namespace TooCuteToLive
                      removeList.Add(character);
                 }
             }
-            if (removeList.Count > 0)
+            foreach (Character c in removeList)
             {
-                characterList.Remove(removeList.ElementAt(0));
+                characterList.Remove(c);
             }
         }
 
