@@ -120,7 +120,7 @@ namespace TooCuteToLive
                     if (mouseStateCurr.LeftButton == ButtonState.Pressed && 
                         mouseStatePrev.LeftButton == ButtonState.Released)
                     {
-                        Vector2 pos = new Vector2(mouseStateCurr.X - mRb.getWidth()/2, mouseStateCurr.Y);
+                        Vector2 pos = new Vector2(mouseStateCurr.X, mouseStateCurr.Y);
                         mRb.Strike(pos, 1, mouseStateCurr.Y);
                         mWepTime = 1;
                     }
