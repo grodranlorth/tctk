@@ -19,19 +19,19 @@ namespace TooCuteToLive
 
         private Texture2D menuScreen;
         private Texture2D title;
+        private Texture2D help;
+        private Texture2D credits;
 
-        private Texture2D[] selMenuItems;
-        private Texture2D[] unSelMenuItems;
-        private Texture2D[] menuItems;
+        private Texture2D backUnsel;
+        private Texture2D creditsUnsel;
+        private Texture2D helpUnsel;
+        private Texture2D startUnsel;
 
-        private Texture2D[] selCreditItems;
-        private Texture2D[] unSelCreditItems;
-        private Texture2D[] creditItems;
-
-        private Texture2D[] selInstructItems;
-        private Texture2D[] unSelInstructItems;
-        private Texture2D[] instructItems;
-
+        private AnimatedSprite backSel;
+        private AnimatedSprite creditsSel;
+        private AnimatedSprite helpSel;
+        private AnimatedSprite startSel;
+        
         private Rectangle startRect, instructRect, creditRect, backRect;
 
         private const int NUM_ITEMS = 3;
@@ -39,9 +39,6 @@ namespace TooCuteToLive
         private const int NUM_INSTRUCT_ITEMS = 1;
 
         /* TODO - ADD TITLE */
-//        private Texture2D mTitle;
-        private Texture2D mStartSel, mStartUnsel, mCreditSel, mCreditUnsel, mInstructSel, mInstructUnsel;
-        private Texture2D mBackSel, mBackUnsel;
 
         enum states
         {
@@ -61,57 +58,31 @@ namespace TooCuteToLive
         {
             mState = states.TITLE;
 
-            mStartSel = content.Load<Texture2D>("Menu/startbutton_active");
-            mStartUnsel = content.Load<Texture2D>("Menu/startbutton_nonactive");
+            backUnsel = content.Load<Texture2D>("Menu/backbutton");
+            creditsUnsel = content.Load<Texture2D>("Menu/creditsbutton");
+            helpUnsel = content.Load<Texture2D>("Menu/helpbutton");
+            startUnsel = content.Load<Texture2D>("Menu/startbutton");
 
-            mCreditSel = content.Load<Texture2D>("Menu/credits_active");
-            mCreditUnsel = content.Load<Texture2D>("Menu/credits_nonactive");
+            backSel = new AnimatedSprite();
+            creditsSel = new AnimatedSprite();
+            helpSel = new AnimatedSprite();
+            startSel = new AnimatedSprite();
 
-            mInstructSel = content.Load<Texture2D>("Menu/howtoplay_active");
-            mInstructUnsel = content.Load<Texture2D>("Menu/howtoplay_nonactive");
-
-            mBackSel = content.Load<Texture2D>("Menu/backtomainmenu_active");
-            mBackUnsel = content.Load<Texture2D>("Menu/backtomainmenu_nonactive");
+            backSel.Load(content, "backbuttonspritesheet", 8, 0.05f, 435.75, 193, false);
+            creditsSel.Load(content, "creditsbuttonspritesheet", 8, 0.05f, 435.75, 193, false);
+            helpSel.Load(content, "helpbuttonspritesheet", 8, 0.05f, 435.75, 193, false);
+            startSel.Load(content, "startbuttonspritesheet", 8, 0.05f, 435.75, 193, false);
 
             menuScreen = content.Load<Texture2D>("Menu/menubackground");
             title = content.Load<Texture2D>("Menu/logo");
 
-            selMenuItems = new Texture2D[NUM_ITEMS];
-            unSelMenuItems = new Texture2D[NUM_ITEMS];
-            menuItems = new Texture2D[NUM_ITEMS];
+            credits = content.Load<Texture2D>("Menu/credits");
+            help = content.Load<Texture2D>("Menu/help");
 
-            selCreditItems = new Texture2D[NUM_CREDIT_ITEMS];
-            unSelCreditItems = new Texture2D[NUM_CREDIT_ITEMS];
-            creditItems = new Texture2D[NUM_CREDIT_ITEMS];
-
-            selInstructItems = new Texture2D[NUM_INSTRUCT_ITEMS];
-            unSelInstructItems = new Texture2D[NUM_INSTRUCT_ITEMS];
-            instructItems = new Texture2D[NUM_INSTRUCT_ITEMS];
-
-            selMenuItems[0] = mStartSel;
-            selMenuItems[1] = mInstructSel;
-            selMenuItems[2] = mCreditSel;
-
-            unSelMenuItems[0] = mStartUnsel;
-            unSelMenuItems[1] = mInstructUnsel;
-            unSelMenuItems[2] = mCreditUnsel;
-
-            menuItems[0] = mStartUnsel;
-            menuItems[1] = mInstructUnsel;
-            menuItems[2] = mCreditUnsel;
-
-            selCreditItems[0] = mBackSel;
-            unSelCreditItems[0] = mBackUnsel;
-            creditItems[0] = mBackUnsel;
-
-            selInstructItems[0] =  mBackSel;
-            unSelInstructItems[0] = mBackUnsel;
-            instructItems[0] = mBackUnsel;
-
-            startRect = new Rectangle(g.GraphicsDevice.Viewport.Width / 10, (g.GraphicsDevice.Viewport.Height) - 350, mStartSel.Width, mStartSel.Height);
-            instructRect = new Rectangle(g.GraphicsDevice.Viewport.Width / 8, (g.GraphicsDevice.Viewport.Height) - 250, mInstructSel.Width, mStartSel.Height);
-            creditRect = new Rectangle(g.GraphicsDevice.Viewport.Width / 6, (g.GraphicsDevice.Viewport.Height) - 150, mCreditSel.Width, mStartSel.Height);
-            backRect = new Rectangle(g.GraphicsDevice.Viewport.Width - 550, (g.GraphicsDevice.Viewport.Height) - 150, mBackSel.Width, mBackSel.Height);
+            startRect = new Rectangle(g.GraphicsDevice.Viewport.Width / 10, (g.GraphicsDevice.Viewport.Height) - 350, startUnsel.Width, startUnsel.Height);
+            instructRect = new Rectangle(g.GraphicsDevice.Viewport.Width / 8, (g.GraphicsDevice.Viewport.Height) - 250, helpUnsel.Width, helpUnsel.Height);
+            creditRect = new Rectangle(g.GraphicsDevice.Viewport.Width / 6, (g.GraphicsDevice.Viewport.Height) - 150, creditsUnsel.Width, creditsUnsel.Height);
+            backRect = new Rectangle(g.GraphicsDevice.Viewport.Width - 550, (g.GraphicsDevice.Viewport.Height) - 150, backUnsel.Width, backUnsel.Height);
         }
 
         public void Update(GameTime gameTime, ref GameStates gameState)
@@ -124,9 +95,7 @@ namespace TooCuteToLive
                     if (mMouseStateCurr.X >= startRect.X && mMouseStateCurr.X < startRect.X + startRect.Width &&
                         mMouseStateCurr.Y >= startRect.Y && mMouseStateCurr.Y < startRect.Y + startRect.Height)
                     {
-                        menuItems[0] = mStartSel;
-                        menuItems[1] = mInstructUnsel;
-                        menuItems[2] = mCreditUnsel;
+                        startSel.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
                         if (mMouseStateCurr.LeftButton == ButtonState.Pressed &&
                             mMouseStatePrev.LeftButton == ButtonState.Released)
@@ -137,9 +106,7 @@ namespace TooCuteToLive
                     else if (mMouseStateCurr.X >= instructRect.X && mMouseStateCurr.X < instructRect.X + instructRect.Width &&
                              mMouseStateCurr.Y >= instructRect.Y && mMouseStateCurr.Y < instructRect.Y + instructRect.Height)
                     {
-                        menuItems[0] = mStartUnsel;
-                        menuItems[1] = mInstructSel;
-                        menuItems[2] = mCreditUnsel;
+                        helpSel.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
                         if (mMouseStateCurr.LeftButton == ButtonState.Pressed &&
                             mMouseStatePrev.LeftButton == ButtonState.Released)
@@ -150,9 +117,7 @@ namespace TooCuteToLive
                     else if (mMouseStateCurr.X >= creditRect.X && mMouseStateCurr.X < creditRect.X + creditRect.Width &&
                              mMouseStateCurr.Y >= creditRect.Y && mMouseStateCurr.Y < creditRect.Y + creditRect.Height)
                     {
-                        menuItems[0] = mStartUnsel;
-                        menuItems[1] = mInstructUnsel;
-                        menuItems[2] = mCreditSel;
+                        creditsSel.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
                         if (mMouseStateCurr.LeftButton == ButtonState.Pressed &&
                             mMouseStatePrev.LeftButton == ButtonState.Released)
@@ -160,27 +125,19 @@ namespace TooCuteToLive
                             mState = states.CREDITS;
                         }
                     }
-                    else
-                    {
-                        menuItems[0] = mStartUnsel;
-                        menuItems[1] = mInstructUnsel;
-                        menuItems[2] = mCreditUnsel;
-                    }
                     break;
 
                 case states.INSTRUCT:
                     if (mMouseStateCurr.X >= backRect.X && mMouseStateCurr.X < backRect.X + backRect.Width &&
                         mMouseStateCurr.Y >= backRect.Y && mMouseStateCurr.Y < backRect.Y + backRect.Height)
                     {
-                        instructItems[0] = mBackSel;
+                        backSel.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
                         if (mMouseStateCurr.LeftButton == ButtonState.Pressed)
                         {
                             mState = states.TITLE;
                         }
                     }
-                    else
-                        instructItems[0] = mBackUnsel;
 
                     break;
 
@@ -188,15 +145,13 @@ namespace TooCuteToLive
                     if (mMouseStateCurr.X >= backRect.X && mMouseStateCurr.X < backRect.X + backRect.Width &&
                         mMouseStateCurr.Y >= backRect.Y && mMouseStateCurr.Y < backRect.Y + backRect.Height)
                     {
-                        creditItems[0] = mBackSel;
+                        backSel.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
                         if (mMouseStateCurr.LeftButton == ButtonState.Pressed)
                         {
                             mState = states.TITLE;
                         }
                     }
-                    else
-                        creditItems[0] = mBackUnsel;
 
                     break;
             }
@@ -214,18 +169,27 @@ namespace TooCuteToLive
             switch (mState)
             {
                 case states.TITLE:
-                    spriteBatch.Draw(menuItems[0], new Vector2(g.GraphicsDevice.Viewport.Width / 10, (g.GraphicsDevice.Viewport.Height) - 350), Color.White);
-                    spriteBatch.Draw(menuItems[1], new Vector2(g.GraphicsDevice.Viewport.Width / 8, (g.GraphicsDevice.Viewport.Height) - 250), Color.White);
-                    spriteBatch.Draw(menuItems[2], new Vector2(g.GraphicsDevice.Viewport.Width / 6, (g.GraphicsDevice.Viewport.Height) - 150), Color.White);
+                    if (mMouseStateCurr.X >= startRect.X && mMouseStateCurr.X < startRect.X + startRect.Width &&
+                        mMouseStateCurr.Y >= startRect.Y && mMouseStateCurr.Y < startRect.Y + startRect.Height)
+
+                        startSel.Draw(spriteBatch, new Vector2(g.GraphicsDevice.Viewport.Width / 10, (g.GraphicsDevice.Viewport.Height) - 350));
+
+                    else
+                        spriteBatch.Draw(startUnsel, new Vector2(g.GraphicsDevice.Viewport.Width / 10, (g.GraphicsDevice.Viewport.Height) - 350), null, Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+    
+                    spriteBatch.Draw(helpUnsel, new Vector2(g.GraphicsDevice.Viewport.Width / 10, (g.GraphicsDevice.Viewport.Height) - 250), null, Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+                    spriteBatch.Draw(creditsUnsel, new Vector2(g.GraphicsDevice.Viewport.Width / 10, (g.GraphicsDevice.Viewport.Height) - 150), null, Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
 
                     break;
 
                 case states.INSTRUCT:
-                    spriteBatch.Draw(instructItems[0], new Vector2(g.GraphicsDevice.Viewport.Width - 550, (g.GraphicsDevice.Viewport.Height) - 150), Color.White); 
+                    spriteBatch.Draw(help, new Vector2(-100.0f, -10.0f), null, Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+                    spriteBatch.Draw(backUnsel, new Vector2(g.GraphicsDevice.Viewport.Width - 550, (g.GraphicsDevice.Viewport.Height) - 150), Color.White); 
                     break;
 
                 case states.CREDITS:
-                    spriteBatch.Draw(creditItems[0], new Vector2(g.GraphicsDevice.Viewport.Width - 550, (g.GraphicsDevice.Viewport.Height) - 150), Color.White); 
+                    spriteBatch.Draw(credits, new Vector2(-100.0f, -10.0f), null, Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+                    spriteBatch.Draw(backUnsel, new Vector2(g.GraphicsDevice.Viewport.Width - 550, (g.GraphicsDevice.Viewport.Height) - 150), Color.White); 
                     break;
             }
         }

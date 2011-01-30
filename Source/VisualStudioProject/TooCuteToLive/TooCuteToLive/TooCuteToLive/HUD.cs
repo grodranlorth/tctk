@@ -34,7 +34,7 @@ namespace TooCuteToLive
 
         public void Load(ContentManager content, Viewport viewPort)
         {
-            fluffyHUD = content.Load<Texture2D>("HUD/FluffyHUD");
+            fluffyHUD = content.Load<Texture2D>("HUD/hudnewshiny");
             cursor = content.Load<Texture2D>("Cursor/fluffycursor");
 
             rainbowIconUnsel = content.Load<Texture2D>("HUD/rainbowmissle_icon");
@@ -63,12 +63,12 @@ namespace TooCuteToLive
 //                    null,
 //                    mHUDCam.get_transformation());
 
-            spriteBatch.Draw(fluffyHUD, new Vector2(graphics.GraphicsDevice.Viewport.Width / 20, graphics.GraphicsDevice.Viewport.Height - 125.0f), Color.White);
+
             spriteBatch.Draw(bombIcon, new Vector2(graphics.GraphicsDevice.Viewport.Width - 250, 50.0f), Color.White);
             spriteBatch.Draw(missileIcon, new Vector2(graphics.GraphicsDevice.Viewport.Width - 150, 50.0f), Color.White);
             spriteBatch.Draw(rainbowIcon, new Vector2(graphics.GraphicsDevice.Viewport.Width - 350, 50.0f), Color.White);
+            spriteBatch.Draw(fluffyHUD, new Vector2(graphics.GraphicsDevice.Viewport.Width / 20, graphics.GraphicsDevice.Viewport.Height - 125.0f), Color.White);
             spriteBatch.Draw(cursor, new Vector2(mouseStateCurr.X, mouseStateCurr.Y), Color.White);
-
 //            spriteBatch.End();
         }
 
@@ -76,7 +76,7 @@ namespace TooCuteToLive
         {
             mouseStateCurr = Mouse.GetState();
 
-            if (Keyboard.GetState().IsKeyDown(Keys.D1))
+            if (Keyboard.GetState().IsKeyDown(Keys.D1) && wManager.checkReady())
             {
                 if (rainbowIcon != rainbowIconSel)
                 {
@@ -86,7 +86,7 @@ namespace TooCuteToLive
                     missileIcon = missileIconUnsel;
                 }
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.D2))
+            else if (Keyboard.GetState().IsKeyDown(Keys.D2) && wManager.checkReady())
             {
                 if (bombIcon != bombIconSel)
                 {
@@ -97,7 +97,7 @@ namespace TooCuteToLive
                     missileIcon = missileIconUnsel;
                 }
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.D3))
+            else if (Keyboard.GetState().IsKeyDown(Keys.D3) && wManager.checkReady())
             {
                 if (missileIcon != missileIconSel)
                 {

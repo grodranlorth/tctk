@@ -86,7 +86,7 @@ namespace TooCuteToLive
             bSphere = new BoundingSphere(new Vector3(position.X + mSprite.getWidth() / 2, position.Y + mSprite.getHeight() / 2, 0), mSprite.getWidth() / 2);
             distance = 10000;
             destination = Vector2.Zero;
-            timeOnFire = 5.0f;
+            timeOnFire = 0.5f;
             respawnRate = 3.0f;
             remove = false;
             multipleOfTwo = false;
@@ -121,7 +121,7 @@ namespace TooCuteToLive
                 if (timeOnFire <= 0)
                 {
                     mStates = states.DEAD;
-                    timeOnFire = 5.0f;
+                    timeOnFire = 0.5f;
                 }
             }
             else if (mStates == states.DEAD)
@@ -140,16 +140,16 @@ namespace TooCuteToLive
             if (hopCounter >= 20)
             {
                 Random rand = new Random();
-                if (mPosition.Y > graphics.GraphicsDevice.Viewport.Height / 2)
+                if (mPosition.Y > graphics.GraphicsDevice.Viewport.Height / 10)
                 {
-                    if (rand.Next(0, 6) <= 4)
+                    if (rand.Next(0, 7) <= 4)
                         mPosition.Y -= 10.0f;
                     else
                         mPosition.Y += 10.0f;
                 }
                 else
                 {
-                    if (rand.Next(0, 6) <= 4)
+                    if (rand.Next(0, 7) <= 4)
                         mPosition.Y += 10.0f;
                     else
                         mPosition.Y -= 10.0f;
@@ -193,9 +193,29 @@ namespace TooCuteToLive
 
         public void kill()
         {
-            mSpeed.X = 4;
-            mSpeed.Y = 1;
+            Random rand = new Random();
+            switch (rand.Next(0, 3))
+            {
+                case 0:
+                    mSpeed.X = 3;
+                    mSpeed.Y = 1;
+                    break;
 
+                case 1:
+                    mSpeed.X = -3;
+                    mSpeed.Y = 1;
+                    break;
+
+                case 2:
+                    mSpeed.X = 1;
+                    mSpeed.Y = 3;
+                    break;
+
+                case 3:
+                    mSpeed.X = 1;
+                    mSpeed.Y = -3;
+                    break;
+            }
             mStates = states.ONFIRE;
             changeImage("charMediumOnFire", Frames.CHAR_MED_ON_FIRE_FRAMES);
         }

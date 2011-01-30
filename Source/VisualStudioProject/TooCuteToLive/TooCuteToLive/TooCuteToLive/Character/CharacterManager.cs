@@ -46,7 +46,7 @@ namespace TooCuteToLive
             mGraphics = graphics;
             characterList = new List<Character>();
             mContent = content;
-            respawnRate = 4.0f;
+            respawnRate = 2.0f;
             respawnTimer = 0.0f;
         }
 
@@ -163,17 +163,17 @@ namespace TooCuteToLive
 
         public void respawn(float time, GameTime gameTime)
         {
-            if (time <= 30 && time > 20)
+            if (time <= 45 && time > 30)
             {
-                respawnRate = 3.0f;
+                respawnRate = 1.5f;
             }
-            else if (time <= 20 && time > 10)
-            {
-                respawnRate = 2.0f;
-            }
-            else if (time <= 10)
+            else if (time <= 30 && time > 15)
             {
                 respawnRate = 1.0f;
+            }
+            else if (time <= 15)
+            {
+                respawnRate = 0.7f;
             }
 
             respawnTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;

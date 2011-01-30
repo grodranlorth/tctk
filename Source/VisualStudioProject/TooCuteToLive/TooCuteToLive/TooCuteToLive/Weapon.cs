@@ -125,7 +125,7 @@ namespace TooCuteToLive
             {
                 /* animation */
                 if (mScale.Y <= (mYValue + 50) / mTexture.Height)
-                    mScale.Y += 0.1f;
+                    mScale.Y += 0.05f;
 
                 mOnScreenTime -= (float)gt.ElapsedGameTime.TotalSeconds;
                 if (mOnScreenTime <= 0)
@@ -145,7 +145,7 @@ namespace TooCuteToLive
         {
             mStrikePos = pos;
             mState = states.MOVING;
-            mStrikeTime = waittime;
+            mStrikeTime = 0.0f;
             mYValue = yValue;
         }
 
