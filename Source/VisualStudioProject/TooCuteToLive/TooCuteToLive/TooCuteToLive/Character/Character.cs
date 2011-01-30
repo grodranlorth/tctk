@@ -83,7 +83,7 @@ namespace TooCuteToLive
             mSpeed = new Vector2(1.0f, 0.25f);
             //mSpeed = new Vector2(0, 0);
             mSprite = new AnimatedSprite();
-            mSprite.Load(mContent, mTextureName, frameCount, 0.05f);
+            mSprite.Load(mContent, "AnimatedSprites/" + mTextureName, frameCount, 0.05f);
             bSphere = new BoundingSphere(new Vector3(position.X + mSprite.getWidth() / 2, position.Y + mSprite.getHeight() / 2, 0), mSprite.getWidth() / 2);
             distance = 10000;
             destination = Vector2.Zero;
@@ -97,7 +97,7 @@ namespace TooCuteToLive
         public void changeImage(string textureName, int numFrames)
         {
             mTextureName = textureName;
-            mSprite.Load(mContent, mTextureName, numFrames, 0.1f);
+            mSprite.Load(mContent, "AnimatedSprites/" + mTextureName, numFrames, 0.1f);
         }
 
  //       public void setSeek(bool seek)

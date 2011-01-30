@@ -42,7 +42,7 @@ namespace TooCuteToLive
         public void Load(ContentManager content, string name, int frameCount, float FPS)
         {
             mFrameCount = frameCount;
-            mTexture = content.Load<Texture2D>("AnimatedSprites/" + name);
+            mTexture = content.Load<Texture2D>(name);
             mFPS = FPS;
             mFrame = 0;
             mElapsed = 0.0f;

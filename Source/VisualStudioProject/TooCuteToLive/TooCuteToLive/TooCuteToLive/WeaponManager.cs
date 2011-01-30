@@ -24,18 +24,28 @@ namespace TooCuteToLive
 
         private int mCurwep;
 
+        public int CurrentWeapon
+        {
+            get { return mCurwep; }
+            set { mCurwep = value; }
+        }
+
         public WeaponManager(ContentManager cm, GraphicsDeviceManager gm)
         {
-            mCurwep = 0;
+            mCurwep = 1;
             /* Add Weapons here */
             mWlist = new List<Weapon>();
             mElist = new List<WeaponEffects>();
 
-            mWlist.Add(new Weapon("rainbow", cm, gm));
+            mWlist.Add(new WRainbow(cm, gm));
+            mWlist.Add(new WHeart(cm, gm));
         }
 
         public void UseCur(Vector2 pos, int mousey)
         {
+            if (!mWlist[mCurwep].Ready())
+                return;
+
             mWlist[mCurwep].Strike(pos, 1, mousey);
             Console.WriteLine("Striking at " + pos.X + " " + pos.Y);
         }

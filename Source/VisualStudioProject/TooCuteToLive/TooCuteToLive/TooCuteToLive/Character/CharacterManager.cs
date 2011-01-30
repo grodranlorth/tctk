@@ -140,7 +140,6 @@ namespace TooCuteToLive
             {
                 if (!character.OnFire() && character.Collides(point))
                 {
-                    Console.WriteLine("Killing at point " + point.X + " " + point.Y);
                     character.kill();
                 }
             }
