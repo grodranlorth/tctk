@@ -54,7 +54,7 @@ namespace TooCuteToLive
                     Load(content, "babyeat", 16, 0.05f, 94.0f, 114.0f, runOnce);
                     break;
                 case spriteText.BABYJUMP:
-                    Load(content, "babyjump", 16, 0.05f, 93.0f, 122.0f, runOnce);
+                    Load(content, "AnimatedSprites/babyjump", 16, 0.05f, 93.0f, 122.0f, runOnce);
                     break;
                 case spriteText.BABYONFIRE:
                     Load(content, "babyonfire", 16, 0.05f, 140.0f, 153.0f, runOnce);

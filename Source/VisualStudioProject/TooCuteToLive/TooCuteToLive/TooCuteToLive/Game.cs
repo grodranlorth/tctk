@@ -120,7 +120,7 @@ namespace TooCuteToLive
             font = Content.Load<SpriteFont>("Fonts/kootenay");
 
             for (int i = 0; i < 1; i++)
-                mCharacterManager.addCharacter("charMedium", Frames.CHAR_MED_FRAMES);
+                mCharacterManager.addBaby();
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace TooCuteToLive
                     }
                     else if (keystate.IsKeyDown(Keys.A) && prevKeyState.IsKeyUp(Keys.A))
                     {
-                        mCharacterManager.addCharacter("charMedium", Frames.CHAR_MED_FRAMES);
+                        mCharacterManager.addBaby();
                     }
 
                     mItemManager.Update(gameTime);

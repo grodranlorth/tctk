@@ -5,7 +5,8 @@
     ONFIRE,
     EATING,
     SEEKING,
-    DEAD
+    DEAD,
+    SPAWNING
 };
 
 public enum age
