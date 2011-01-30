@@ -71,7 +71,7 @@ namespace TooCuteToLive
                     Load(content, "AnimatedSprites/fattyeat", 16, 0.05f, 127.0f, 135.0f, runOnce);
                     break;
                 case spriteText.FATTYJUMP:
-                    Load(content, "AnimatedSprites/fattyjump", 64, 0.025f, 131.0f, 139.0f, runOnce);
+                    Load(content, "AnimatedSprites/fattyjump", 45, 0.2f, 131.0f, 139.0f, runOnce);
                     break;
                 case spriteText.FATTYONFIRE:
                     Load(content, "AnimatedSprites/fattyonfire", 16, 0.05f, 174.0f, 152.0f, runOnce);
