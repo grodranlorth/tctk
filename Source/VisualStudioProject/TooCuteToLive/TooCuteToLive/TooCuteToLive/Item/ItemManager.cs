@@ -24,6 +24,7 @@ namespace TooCuteToLive
 
         public void addItem(string textureName, Vector2 position)
         {
+            AudioManager.oooooh.Play();
             itemList.Add(new Item(textureName, position, mContent));
         }
 
@@ -32,6 +33,7 @@ namespace TooCuteToLive
             foreach (Item item in itemList)
             {
                 item.Update(gameTime);
+
             }
         }
 

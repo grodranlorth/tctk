@@ -32,10 +32,20 @@ namespace TooCuteToLive
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(font, "Score: " + score, new Vector2(100.0f, 100.0f), Color.Black);
-            if (timer >= 2 && timer <= 4)
-                spriteBatch.DrawString(font, "You Failed to kill the Sparkles", new Vector2(100.0f, 200.0f), Color.Black);
-            else if (timer <= 1)
-                spriteBatch.DrawString(font, "Goodbye", new Vector2(100.0f, 200.0f), Color.Black);                
+            if (score == 0)
+            {
+                if (timer >= 2 && timer <= 4)
+                    spriteBatch.DrawString(font, "You Failed to kill the Sparkles", new Vector2(100.0f, 200.0f), Color.Black);
+                else if (timer <= 1)
+                    spriteBatch.DrawString(font, "Goodbye", new Vector2(100.0f, 200.0f), Color.Black);
+            }
+            else
+            {
+                if (timer >= 2 && timer <= 4)
+                    spriteBatch.DrawString(font, "Congratulations!!! You killed all the Sparkles", new Vector2(100.0f, 200.0f), Color.Black);
+                else if (timer < 1)
+                    spriteBatch.DrawString(font, "You will play again", new Vector2(100.0f, 200.0f), Color.Black);
+            }
         }
 
         public void Update(GameTime gameTime, ref GameStates gameState)

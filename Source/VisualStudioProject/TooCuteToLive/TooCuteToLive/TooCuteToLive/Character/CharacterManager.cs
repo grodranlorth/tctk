@@ -52,6 +52,7 @@ namespace TooCuteToLive
 
         public void addCharacter(string textureName,int frameCount)
         {
+            AudioManager.Play(AudioManager.hi);
             characterList.Add(new Character(textureName, 
                               new Vector2(rand.Next(100, mGraphics.GraphicsDevice.Viewport.Width - 100), 
                                           rand.Next(200, mGraphics.GraphicsDevice.Viewport.Height - 100)),
@@ -75,7 +76,7 @@ namespace TooCuteToLive
 //                    character.setSeek(true);
                     foreach (Item item in mItemList)
                     {
-
+                        
                         if (character.Distance > Math.Sqrt((double)(character.Position.X - item.Position.X) +
                                                            (double)(character.Position.X - item.Position.Y)))
                         {
@@ -90,7 +91,7 @@ namespace TooCuteToLive
 
                 foreach (Character character1 in characterList)
                 {
-                    if (character.Collides(character1.BSphere))
+                    if (character.Collides(new Vector2(character1.BSphere.Center.X, character1.BSphere.Center.Y)))
                     {
                         if (character.OnFire())
                             character1.SetOnFire();
@@ -140,7 +141,6 @@ namespace TooCuteToLive
             {
                 if (!character.OnFire() && character.Collides(point))
                 {
-                    Console.WriteLine("Killing at point " + point.X + " " + point.Y);
                     character.kill();
                 }
             }
@@ -149,6 +149,11 @@ namespace TooCuteToLive
         public void Clear()
         {
             characterList.Clear();
+        }
+
+        public bool isEmpty()
+        {
+            return (characterList.Count == 0);
         }
     }
 }

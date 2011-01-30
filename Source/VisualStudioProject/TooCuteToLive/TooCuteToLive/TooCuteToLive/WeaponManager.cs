@@ -36,6 +36,11 @@ namespace TooCuteToLive
 
         public void UseCur(Vector2 pos, int mousey)
         {
+            Random rand = new Random();
+            if (rand.Next(0, 10) <= 4)
+                AudioManager.notAgain.Play();
+            else
+                AudioManager.yourMean.Play();
             mWlist[mCurwep].Strike(pos, 1, mousey);
             Console.WriteLine("Striking at " + pos.X + " " + pos.Y);
         }
