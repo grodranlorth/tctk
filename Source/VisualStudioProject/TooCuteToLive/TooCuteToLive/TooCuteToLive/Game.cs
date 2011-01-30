@@ -143,12 +143,12 @@ namespace TooCuteToLive
             switch (mCurrentState)
             {
                 case GameStates.GAME:
-
+                    mCharacterManager.respawn(timer, gameTime);
                     if (temp <= 4)
                         AudioManager.Play(AudioManager.chillin);
                     else
                         AudioManager.Play(AudioManager.chillin2);
-                    hud.Update(gameTime);
+                    hud.Update(gameTime, wM);
 
                     timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                     if (timer <= 0 || mCharacterManager.isEmpty())

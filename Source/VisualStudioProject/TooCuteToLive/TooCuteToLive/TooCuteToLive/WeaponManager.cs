@@ -32,7 +32,7 @@ namespace TooCuteToLive
 
         public WeaponManager(ContentManager cm, GraphicsDeviceManager gm)
         {
-            mCurwep = 1;
+            mCurwep = 0;
             /* Add Weapons here */
             mWlist = new List<Weapon>();
             mElist = new List<WeaponEffects>();

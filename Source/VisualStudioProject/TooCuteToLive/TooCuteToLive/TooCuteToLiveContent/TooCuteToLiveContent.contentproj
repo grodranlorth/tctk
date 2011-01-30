@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{4E8E9C71-7AA0-4AE2-A39C-E076086467BC}</ProjectGuid>
@@ -91,11 +91,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HUD\Cupcake_icon.jpg">
-      <Name>Cupcake_icon</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="HUD\rainbowmissle_icon.jpg">
       <Name>rainbowmissle_icon</Name>
       <Importer>TextureImporter</Importer>
@@ -103,11 +98,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HUD\Cupcake_icon_selected.jpg">
-      <Name>Cupcake_icon_selected</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="HUD\rainbowmissle_icon_selected.jpg">
       <Name>rainbowmissle_icon_selected</Name>
       <Importer>TextureImporter</Importer>
@@ -264,6 +254,28 @@
       <Name>SFX_3tickboom</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HUD\Bombheart_icon.jpg">
+      <Name>Bombheart_icon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="HUD\Bombheart_icon_selected.jpg">
+      <Name>Bombheart_icon_selected</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="HUD\Lollirocket_icon.jpg">
+      <Name>Lollirocket_icon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="HUD\Lollirocket_icon_selected.jpg">
+      <Name>Lollirocket_icon_selected</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

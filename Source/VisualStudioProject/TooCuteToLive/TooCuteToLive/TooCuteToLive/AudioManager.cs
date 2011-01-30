@@ -91,10 +91,12 @@ namespace TooCuteToLive
             chillin.Stop();
         }
 
-        public static void Play(SoundEffectInstance sound, float volume)
+        public static void Play(SoundEffectInstance sound, float volume, float pan, float pitch)
         {
             sound.Play();
             sound.Volume = volume;
+            sound.Pan = pan;
+            sound.Pitch = pitch;
         }
 
         public static void Play(SoundEffectInstance sound)

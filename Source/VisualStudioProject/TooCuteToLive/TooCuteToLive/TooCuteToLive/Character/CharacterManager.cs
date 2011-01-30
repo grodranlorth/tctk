@@ -20,6 +20,9 @@ namespace TooCuteToLive
 
         private Random rand = new Random();
 
+        private float respawnRate;
+        private float respawnTimer;
+
         private static CharacterManager instance = null;
         public static CharacterManager Instance
         {
@@ -43,6 +46,8 @@ namespace TooCuteToLive
             mGraphics = graphics;
             characterList = new List<Character>();
             mContent = content;
+            respawnRate = 4.0f;
+            respawnTimer = 0.0f;
         }
 
         public void Load()
@@ -154,6 +159,29 @@ namespace TooCuteToLive
         public bool isEmpty()
         {
             return (characterList.Count == 0);
+        }
+
+        public void respawn(float time, GameTime gameTime)
+        {
+            if (time <= 30 && time > 20)
+            {
+                respawnRate = 3.0f;
+            }
+            else if (time <= 20 && time > 10)
+            {
+                respawnRate = 2.0f;
+            }
+            else if (time <= 10)
+            {
+                respawnRate = 1.0f;
+            }
+
+            respawnTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (respawnTimer >= respawnRate)
+            {
+                addCharacter("charMedium", Frames.CHAR_MED_FRAMES);
+                respawnTimer = 0;
+            }
         }
     }
 }
