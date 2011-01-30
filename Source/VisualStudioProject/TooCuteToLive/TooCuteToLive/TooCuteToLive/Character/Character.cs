@@ -33,6 +33,8 @@ namespace TooCuteToLive
 
         private bool remove;
 
+        private Texture2D hacktex;
+
         enum age
         {
             BABY,
@@ -79,15 +81,17 @@ namespace TooCuteToLive
             mAge = age.MEDIUM;
             mStates = states.WALKING;
             mSpeed = new Vector2(1.0f, 0.25f);
+            //mSpeed = new Vector2(0, 0);
             mSprite = new AnimatedSprite();
             mSprite.Load(mContent, mTextureName, frameCount, 0.05f);
-            bSphere = new BoundingSphere(new Vector3(position.X + mSprite.getWidth() / 2, position.Y + mSprite.getHeight() / 2, 0.0f), mSprite.getWidth() / 2);
+            bSphere = new BoundingSphere(new Vector3(position.X + mSprite.getWidth() / 2, position.Y + mSprite.getHeight() / 2, 0), mSprite.getWidth() / 2);
             distance = 10000;
             destination = Vector2.Zero;
             timeOnFire = 5.0f;
             respawnRate = 3.0f;
             remove = false;
             multipleOfTwo = false;
+            hacktex = Class1.CreateCircle((int)mSprite.getWidth() / 2, Color.Yellow);
         }
 
         public void changeImage(string textureName, int numFrames)
@@ -145,11 +149,14 @@ namespace TooCuteToLive
                 mSpeed.Y *= -1;
             else if (mPosition.Y <= 0)
                 mSpeed.Y *= -1;
+
+            //bSphere.Center = new Vector3(mPosition.X, mPosition.Y, 0.0f);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             mSprite.Draw(spriteBatch, mPosition);
+            //spriteBatch.Draw(hacktex, new Vector2(bSphere.Center.X - mSprite.getWidth() / 2, bSphere.Center.Y - mSprite.getHeight() / 2), Color.White);
         }
 
         public bool Collides(BoundingSphere boundSphere)
@@ -159,7 +166,14 @@ namespace TooCuteToLive
 
         public bool Collides(Vector2 point)
         {
-            return bSphere.Contains(new Vector3(point.X, point.Y, 0.0f)) == ContainmentType.Contains;
+            //return (bSphere.Contains(new Vector3(point.X, point.Y, 0.0f)) == ContainmentType.Contains);
+
+            Vector2 c = new Vector2(mPosition.X + mSprite.getWidth() / 2, mPosition.Y +  mSprite.getHeight() / 2);
+            double dist = Math.Sqrt(Math.Pow((c.X - point.X), 2) + Math.Pow((c.Y - point.Y), 2));
+            //Console.WriteLine("center: " + c.X + " " + c.Y + " Point: " + point.X + " " + point.Y);
+            //Console.WriteLine("dist: " + dist);
+
+            return dist <= mSprite.getWidth() / 2;
         }
 
         public void kill()

@@ -58,6 +58,11 @@ namespace TooCuteToLive
                               mContent, frameCount));
         }
 
+        public void addCharacter(string textureName, Vector2 pos, int frameCount)
+        {
+            characterList.Add(new Character(textureName, pos, mContent, frameCount));
+        }
+
         public void Update(GameTime gameTime, List<Item> itemList)
         {
             List<Character> removeList = new List<Character>();
@@ -89,7 +94,6 @@ namespace TooCuteToLive
                     {
                         if (character.OnFire())
                             character1.SetOnFire();
-
                         else if (character1.OnFire())
                             character.SetOnFire();
 
@@ -134,11 +138,17 @@ namespace TooCuteToLive
         {
             foreach (Character character in characterList)
             {
-                if (character.Collides(point))
+                if (!character.OnFire() && character.Collides(point))
                 {
+                    Console.WriteLine("Killing at point " + point.X + " " + point.Y);
                     character.kill();
                 }
             }
+        }
+
+        public void Clear()
+        {
+            characterList.Clear();
         }
     }
 }

@@ -25,8 +25,7 @@ namespace TooCuteToLive
         MouseState mouseStateCurr, mouseStatePrev;
         KeyboardState keystate, prevKeyState;
 
-        Weapon mRb;
-        float mWepTime;
+        WeaponManager wM;
 
         private Texture2D cursor;
 
@@ -56,8 +55,11 @@ namespace TooCuteToLive
         /// </summary>
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
-            graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
+            //graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
+            //graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
+
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 600;
 
             graphics.ToggleFullScreen();
 
@@ -65,11 +67,10 @@ namespace TooCuteToLive
 
             graphics.ApplyChanges();
 
+            Class1.graph = graphics;
+
             mCharacterManager = CharacterManager.GetInstance(Content, graphics);
             mCharacterManager.addCharacter("charMedium", Frames.CHAR_MED_FRAMES);
-
-            mRb = new Weapon("rainbow", Content, graphics);
-            mWepTime = 0;
 
             mMenu = new Menu(this);
 
@@ -78,6 +79,7 @@ namespace TooCuteToLive
             mCam = new Camera(graphics.GraphicsDevice.Viewport);
 
             hud = new HUD();
+            wM = new WeaponManager(Content, graphics);
 
             base.Initialize();
         }
@@ -110,6 +112,8 @@ namespace TooCuteToLive
             // Allows the game to exitsor
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
+            if (Keyboard.GetState().IsKeyDown(Keys.C))
+                mCharacterManager.Clear();
 
             mouseStateCurr = Mouse.GetState();
             keystate = Keyboard.GetState();
@@ -125,8 +129,7 @@ namespace TooCuteToLive
                         mouseStatePrev.LeftButton == ButtonState.Released)
                     {
                         Vector2 pos = new Vector2(mouseStateCurr.X, mouseStateCurr.Y);
-                        mRb.Strike(pos, 1, mouseStateCurr.Y);
-                        mWepTime = 1;
+                        wM.UseCur(pos, mouseStateCurr.Y);
                     }
                     else if (mouseStateCurr.RightButton == ButtonState.Pressed &&
                         mouseStatePrev.RightButton == ButtonState.Released)
@@ -137,11 +140,12 @@ namespace TooCuteToLive
                     else if (keystate.IsKeyDown(Keys.A) && prevKeyState.IsKeyUp(Keys.A))
                     {
                         mCharacterManager.addCharacter("charMedium", Frames.CHAR_MED_FRAMES);
+                        //mCharacterManager.addCharacter("charMedium", new Vector2(300, 300), Frames.CHAR_MED_FRAMES);
                     }
 
                     mItemManager.Update(gameTime);
                     mCharacterManager.Update(gameTime, mItemManager.itemList);
-                    mRb.Update(gameTime, mouseStateCurr.Y);
+                    wM.Update(gameTime);
 
                     break;
 
@@ -194,13 +198,14 @@ namespace TooCuteToLive
                     //spriteBatch.Draw(level, Vector2.Zero, Color.White);
                     mCharacterManager.Draw(spriteBatch);
                     mItemManager.Draw(spriteBatch);
-                    mRb.Draw(spriteBatch);
+                    wM.Draw(spriteBatch);
                     hud.Draw(spriteBatch, graphics);
 
                     break;
 
                 case GameStates.MENU:
                     mMenu.Draw(spriteBatch);
+                    spriteBatch.Draw(cursor, new Vector2(mouseStateCurr.X, mouseStateCurr.Y), Color.White);
                     break;
 
 //                case gameStates.PAUSE:
@@ -211,7 +216,6 @@ namespace TooCuteToLive
                     /* TODO - Add score draw stuff */
                     break;
             }
-            spriteBatch.Draw(cursor, new Vector2(mouseStateCurr.X, mouseStateCurr.Y), Color.White);
 
             spriteBatch.End();
 
