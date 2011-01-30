@@ -167,15 +167,17 @@ namespace TooCuteToLive
     class WHeart : Weapon
     {
         private float mYValue;
-        private float mBlowupTime, mFallrate;
+        private float mBlowuptime, mFallrate, mExptime;
         private const float gravity = .1f, maxgrav = 40;
         private Vector2 mPos, mSpeed;
-        private AnimatedSprite mSprite;
+        private AnimatedSprite mSprite, mSpriteExp;
+        private bool killed;
 
         enum states
         {
             FALLING,
             WAITING,
+            EXPLODING,
             GONE
         };
 
@@ -190,6 +192,10 @@ namespace TooCuteToLive
 
             mSprite = new AnimatedSprite();
             mSprite.Load(cm, "Weapons/bombheart", 6, .5f);
+
+            mSpriteExp = new AnimatedSprite();
+            mSpriteExp.Load(cm, "AnimatedSprites/mushroomspritesheet", 12, .02f);
+            mSpriteExp.Scale = 1.25f;
         }
 
         public override void Update(GameTime gt, float yValue)
@@ -206,16 +212,43 @@ namespace TooCuteToLive
 
                 if (mPos.Y + mSprite.getHeight() / 2 >= mStrikePos.Y)
                 {
-                    mPos.Y = mStrikePos.Y - mSprite.getHeight() / 2;
+                    //mPos.Y = mStrikePos.Y - mSprite.getHeight() / 2;
                     mState = states.WAITING;
                 }
             }
             else if (mState == states.WAITING)
             {
-                mBlowupTime -= (float)gt.ElapsedGameTime.TotalSeconds;
+                mBlowuptime -= (float)gt.ElapsedGameTime.TotalSeconds;
                 mSprite.Update((float)gt.ElapsedGameTime.TotalSeconds);
-                if (mBlowupTime < 0)
+                if (mBlowuptime < 0)
+                {
+                    mState = states.EXPLODING;
+                    mPos.X = mStrikePos.X - mSpriteExp.getWidth() / 2;
+                    mPos.Y = mStrikePos.Y - 3*(mSpriteExp.getHeight() / 4);
+                }
+            }
+            else if (mState == states.EXPLODING)
+            {
+                mExptime -= (float)gt.ElapsedGameTime.TotalSeconds;
+                mSpriteExp.Update((float)gt.ElapsedGameTime.TotalSeconds);
+
+                if (mExptime < 0)
+                {
                     mState = states.GONE;
+                }
+                else if (mExptime < .1 && !killed)
+                {
+                    /* XXX */
+                    killed = true;
+                    LinkedList<Vector2> points = circlehack(mStrikePos, 40);
+
+                    //Console.WriteLine("killing points");
+                    foreach (Vector2 vec in points)
+                    {
+                        mCharManager.pointKill(vec);
+                        //Console.WriteLine(vec.X + " " + vec.Y);
+                    }
+                }
             }
         }
 
@@ -225,25 +258,43 @@ namespace TooCuteToLive
             mState = states.FALLING;
 
             mPos.Y = -20;
-            mPos.X = mStrikePos.X - mSprite.getWidth() /2;
+            mPos.X = mStrikePos.X - mSprite.getWidth() / 2;
             mSpeed = Vector2.Zero;
-            mBlowupTime = 3;
+            mBlowuptime = .1f;
+            mExptime = .24f;
             mFallrate = .01f;
             mSprite.Reset();
+            mSpriteExp.Reset();
+            killed = false;
         }
 
         public override void Draw(SpriteBatch sb)
         {
-            if (mState != states.GONE)
-                //sb.Draw(mTexture, mPos, Color.White);
+            if (mState == states.FALLING || mState == states.WAITING)
                 mSprite.Draw(sb, mPos);
+            else if (mState == states.EXPLODING)
+                mSpriteExp.Draw(sb, mPos);
         }
 
         public override bool Ready()
         {
             return mState == states.GONE;
         }
+
+        private LinkedList<Vector2> circlehack(Vector2 pos, int rad, int skip = 20)
+        {
+            LinkedList<Vector2> ret = new LinkedList<Vector2>();
+            Vector2 temp;
+
+            for(int i = 0; i < 360; i += skip)
+            {
+                temp.X = pos.X + (float)Math.Cos(i)*rad;
+                temp.Y = pos.Y - (float)Math.Sin(i)*rad;
+
+                ret.AddLast(new Vector2(temp.X, temp.Y));
+            }
+
+            return ret;
+        }
     }
 }
-
-
