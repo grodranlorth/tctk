@@ -20,7 +20,7 @@ namespace TooCuteToLive
         private int mFrameCount;
 
         /* Frames Per Second */
-        private float mFPS;
+        private float mFPS, mScale;
 
         /* The current frame to show */
         private int mFrame;
@@ -29,6 +29,12 @@ namespace TooCuteToLive
 
         /* Elapsed time */
         private float mElapsed;
+
+        public float Scale
+        {
+            get {return mScale;}
+            set {mScale = value;}
+        }
 
         public AnimatedSprite() { }
 
@@ -46,6 +52,7 @@ namespace TooCuteToLive
             mFPS = FPS;
             mFrame = 0;
             mElapsed = 0.0f;
+            mScale = 0.5f;
         }
 
         /// <summary>
@@ -76,7 +83,7 @@ namespace TooCuteToLive
             int width = mTexture.Width / mFrameCount;
             Rectangle sourcerect = new Rectangle(width * mFrame, 0, width, mTexture.Height);
 
-            spriteBatch.Draw(mTexture, position, sourcerect, Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(mTexture, position, sourcerect, Color.White, 0.0f, Vector2.Zero, mScale, SpriteEffects.None, 0.0f);
 
         }
 
@@ -91,12 +98,12 @@ namespace TooCuteToLive
 
         public float getHeight()
         {
-            return mTexture.Height;
+            return mTexture.Height*mScale;
         }
 
         public float getWidth()
         {
-            return mTexture.Width / mFrameCount;
+            return (mTexture.Width / mFrameCount)*mScale;
         }
     }
 }
