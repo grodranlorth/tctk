@@ -166,7 +166,6 @@ namespace TooCuteToLive
 
     class WHeart : Weapon
     {
-        private float mYValue;
         private float mBlowuptime, mFallrate, mExptime;
         private const float gravity = .1f, maxgrav = 40;
         private Vector2 mPos, mSpeed;
@@ -186,7 +185,6 @@ namespace TooCuteToLive
         public WHeart(ContentManager cm, GraphicsDeviceManager graphics)
             : base(cm, graphics)
         {
-            mYValue = 0.0f;
             mPos = new Vector2();
             mState = states.GONE;
 
@@ -260,7 +258,7 @@ namespace TooCuteToLive
             mPos.Y = -20;
             mPos.X = mStrikePos.X - mSprite.getWidth() / 2;
             mSpeed = Vector2.Zero;
-            mBlowuptime = .1f;
+            mBlowuptime = 2f;
             mExptime = .24f;
             mFallrate = .01f;
             mSprite.Reset();
