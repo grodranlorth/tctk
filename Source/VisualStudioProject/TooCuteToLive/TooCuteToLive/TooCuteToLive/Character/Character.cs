@@ -24,6 +24,9 @@ namespace TooCuteToLive
         private float timeOnFire;
         private float respawnRate;
 
+        private float[] hopY = { 1.0f, 0.0f, 2.0f, 0.0f, 3.0f, 0.0f, 4.0f, 0.0f, 5.0f, 0.0f, -1.0f, 0.0f, -2.0f, 0.0f, -3.0f, 0.0f, -4.0f, 0.0f, -5.0f, 0.0f};
+        private int hopCounter = 0;
+
         private bool multipleOfTwo;
 
         private ContentManager mContent;
@@ -129,7 +132,10 @@ namespace TooCuteToLive
                 }
             }
             mPosition.X += mSpeed.X;
-            mPosition.Y += mSpeed.Y;
+            mPosition.Y += hopY[hopCounter];
+            hopCounter++;
+            if (hopCounter >= 20)
+                hopCounter = 0;
 
             if (mPosition.X + getWidth() > graphics.GraphicsDevice.Viewport.Width)
                 mSpeed.X *= -1;

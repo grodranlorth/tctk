@@ -164,8 +164,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Levels\LevelFPO.png">
-      <Name>LevelFPO</Name>
+    <Compile Include="Levels\Level_ver01.png">
+      <Name>Level_ver01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Levels\Level_ver02.png">
+      <Name>Level_ver02</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

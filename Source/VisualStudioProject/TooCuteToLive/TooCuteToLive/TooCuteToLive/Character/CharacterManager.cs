@@ -53,8 +53,8 @@ namespace TooCuteToLive
         public void addCharacter(string textureName,int frameCount)
         {
             characterList.Add(new Character(textureName, 
-                              new Vector2(rand.Next(0, mGraphics.GraphicsDevice.Viewport.Width - 100), 
-                                          rand.Next(0, mGraphics.GraphicsDevice.Viewport.Height- 100)),
+                              new Vector2(rand.Next(100, mGraphics.GraphicsDevice.Viewport.Width - 100), 
+                                          rand.Next(200, mGraphics.GraphicsDevice.Viewport.Height - 100)),
                               mContent, frameCount));
         }
 
@@ -93,21 +93,21 @@ namespace TooCuteToLive
                         else if (character1.OnFire())
                             character.SetOnFire();
 
-                        if (character.OnFire() && !character.MultipleOfTwo) 
-                            character.Speed *= -2;
-                        else 
-                        {
-                            character.Speed *= -1/2;
-                            character.MultipleOfTwo = false;
-                        }
+//                        if (character.OnFire() && !character.MultipleOfTwo) 
+//                            character.Speed *= -2;
+//                        else 
+//                        {
+//                            character.Speed *= -1/2;
+//                            character.MultipleOfTwo = false;
+//                        }
 
-                        if (character1.OnFire() && !character1.MultipleOfTwo)
-                            character1.Speed *= -2;
-                        else
-                        {
-                            character1.Speed *= -1/2;
-                            character1.MultipleOfTwo = false;
-                        }
+//                        if (character1.OnFire() && !character1.MultipleOfTwo)
+//                            character1.Speed *= -2;
+//                        else
+//                        {
+//                            character1.Speed *= -1/2;
+//                            character1.MultipleOfTwo = false;
+//                        }
                     }
                 }
 

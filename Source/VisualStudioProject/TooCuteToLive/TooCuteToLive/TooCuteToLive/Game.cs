@@ -59,7 +59,7 @@ namespace TooCuteToLive
             graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
 
-            //graphics.ToggleFullScreen();
+            graphics.ToggleFullScreen();
 
             this.Window.Title = "Too Cute To Live";
 
@@ -96,7 +96,7 @@ namespace TooCuteToLive
 
             hud.Load(Content, graphics.GraphicsDevice.Viewport);
             cursor = Content.Load<Texture2D>("Cursor/fluffycursor");
-            level = Content.Load<Texture2D>("Levels/LevelFPO");
+            level = Content.Load<Texture2D>("Levels/Level_ver02");
         }
 
         /// <summary>
