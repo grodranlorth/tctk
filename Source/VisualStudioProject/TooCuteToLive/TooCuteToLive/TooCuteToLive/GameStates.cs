@@ -2,5 +2,7 @@
 {
     GAME,
     MENU,
-    SCORING
+    SCORING,
+    INTRO,
+    EXIT
 }

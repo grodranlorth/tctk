@@ -17,6 +17,9 @@ namespace TooCuteToLive
 
         private MouseState mMouseStateCurr, mMouseStatePrev;
 
+        private Texture2D menuScreen;
+        private Texture2D title;
+
         private Texture2D[] selMenuItems;
         private Texture2D[] unSelMenuItems;
         private Texture2D[] menuItems;
@@ -69,6 +72,9 @@ namespace TooCuteToLive
 
             mBackSel = content.Load<Texture2D>("Menu/backtomainmenu_active");
             mBackUnsel = content.Load<Texture2D>("Menu/backtomainmenu_nonactive");
+
+            menuScreen = content.Load<Texture2D>("Menu/menubackground");
+            title = content.Load<Texture2D>("Menu/logo");
 
             selMenuItems = new Texture2D[NUM_ITEMS];
             unSelMenuItems = new Texture2D[NUM_ITEMS];
@@ -125,7 +131,7 @@ namespace TooCuteToLive
                         if (mMouseStateCurr.LeftButton == ButtonState.Pressed &&
                             mMouseStatePrev.LeftButton == ButtonState.Released)
                         {
-                            gameState = GameStates.GAME;
+                            gameState = GameStates.INTRO;
                         }
                     }
                     else if (mMouseStateCurr.X >= instructRect.X && mMouseStateCurr.X < instructRect.X + instructRect.Width &&
@@ -197,8 +203,14 @@ namespace TooCuteToLive
             mMouseStatePrev = mMouseStateCurr;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
         {
+            spriteBatch.Draw(menuScreen, Vector2.Zero, null, Color.White, 0.0f, Vector2.Zero,
+                new Vector2((float)graphics.GraphicsDevice.Viewport.Width / (float)menuScreen.Width,
+                            (float)graphics.GraphicsDevice.Viewport.Height / (float)menuScreen.Height), SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(title, new Vector2(graphics.GraphicsDevice.Viewport.Width / 20, graphics.GraphicsDevice.Viewport.Height / 30), null, Color.White, 0.0f, Vector2.Zero, 
+                0.4f, SpriteEffects.None, 0.0f);
+
             switch (mState)
             {
                 case states.TITLE:

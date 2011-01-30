@@ -116,12 +116,14 @@
     <Compile Include="Frames.cs" />
     <Compile Include="GameStates.cs" />
     <Compile Include="HUD.cs" />
+    <Compile Include="Intro.cs" />
     <Compile Include="Item\Item.cs" />
     <Compile Include="Item\ItemManager.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Scoring.cs" />
     <Compile Include="Weapon.cs" />
     <Compile Include="WeaponManager.cs" />
     <Compile Include="WorldObjects.cs" />

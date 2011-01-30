@@ -91,6 +91,63 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HUD\Cupcake_icon.jpg">
+      <Name>Cupcake_icon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="HUD\rainbowmissle_icon.jpg">
+      <Name>rainbowmissle_icon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HUD\Cupcake_icon_selected.jpg">
+      <Name>Cupcake_icon_selected</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="HUD\rainbowmissle_icon_selected.jpg">
+      <Name>rainbowmissle_icon_selected</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnimatedSprites\charMediumDeath.png">
+      <Name>charMediumDeath</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Levels\Level_ver01.png">
+      <Name>Level_ver01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Levels\Level_ver02.png">
+      <Name>Level_ver02</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Menu\logo.png">
+      <Name>logo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Menu\menubackground.png">
+      <Name>menubackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Menu\backtomainmenu_active.png">
       <Name>backtomainmenu_active</Name>
       <Importer>TextureImporter</Importer>
@@ -133,46 +190,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HUD\Cupcake_icon.jpg">
-      <Name>Cupcake_icon</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="HUD\rainbowmissle_icon.jpg">
-      <Name>rainbowmissle_icon</Name>
+    <Compile Include="Weapons\lollirocket.png">
+      <Name>lollirocket</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HUD\Cupcake_icon_selected.jpg">
-      <Name>Cupcake_icon_selected</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="HUD\rainbowmissle_icon_selected.jpg">
-      <Name>rainbowmissle_icon_selected</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AnimatedSprites\charMediumDeath.png">
-      <Name>charMediumDeath</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Levels\Level_ver01.png">
-      <Name>Level_ver01</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Levels\Level_ver02.png">
-      <Name>Level_ver02</Name>
+    <Compile Include="Weapons\bombheart.png">
+      <Name>bombheart</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
