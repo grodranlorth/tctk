@@ -64,11 +64,11 @@ namespace TooCuteToLive
         /// </summary>
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
-            graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
+            //graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
+            //graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
 
-//            graphics.PreferredBackBufferWidth = 800;
-//            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 1024;
 
             //graphics.ToggleFullScreen();
 
@@ -186,7 +186,8 @@ namespace TooCuteToLive
                     break;
 
                 case GameStates.INTRO:
-                    mIntro.Update(gameTime, ref mCurrentState);
+                    //mIntro.Update(gameTime, ref mCurrentState);
+                    mCurrentState = GameStates.GAME;
                     break;
 
                 case GameStates.SCORING:
