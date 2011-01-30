@@ -42,7 +42,7 @@ namespace TooCuteToLive
             mState = states.DRAW;
             cupcake = mContent.Load<Texture2D>("Items/cupcake");
             remove = false;
-            timer = 2.0f;
+            timer = 0.1f;
             eating = false;
         }
 
@@ -59,7 +59,7 @@ namespace TooCuteToLive
                 if (timer <= 0)
                 {
                     remove = true;
-                    timer = 2.0f;
+                    
                 }
             }
         }

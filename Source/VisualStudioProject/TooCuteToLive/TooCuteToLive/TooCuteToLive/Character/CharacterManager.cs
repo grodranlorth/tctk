@@ -101,6 +101,7 @@ namespace TooCuteToLive
                     if ((Math.Abs(i.Position.X - character.Position.X) < 10) &&
                         Math.Abs(i.Position.Y - character.Position.Y) < 10)
                         i.eating = true;
+                        
                 }
 
                 if (noeat)

@@ -91,7 +91,7 @@ namespace TooCuteToLive
             wM = new WeaponManager(Content, graphics);
 
             /* Number of seconds the level will run */
-            timer = 60.0f;
+            timer = 120.0f;
 
             base.Initialize();
         }

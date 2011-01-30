@@ -162,7 +162,7 @@ namespace TooCuteToLive
                         mSprite.LoadEnum(mContent, spriteText.BABYDEATH, true);
 
                    }
-                   else if (mAge == age.BABY)
+                   else if (mAge == age.MEDIUM)
                    {
                        mSprite.LoadEnum(mContent, spriteText.MIDDEATH, true);
                    }
@@ -236,6 +236,19 @@ namespace TooCuteToLive
                     Math.Abs(mPosition.Y - destination.Y) < 20)
                 {
                     mStates = states.EATING;
+                    if (mAge == age.BABY)
+                    {
+                        mSprite.LoadEnum(mContent, spriteText.BABYEAT, false);
+                    }
+                    else if (mAge == age.MEDIUM)
+                    {
+                        mSprite.LoadEnum(mContent, spriteText.MIDEAT, false);
+                    }
+                    else
+                    {
+                        mSprite.LoadEnum(mContent, spriteText.FATTYEAT, false);
+                    }
+
                 }
 
                 if (mPosition.X != destination.X)
@@ -345,7 +358,9 @@ namespace TooCuteToLive
             {
                 if (SEEK)
                 {
+
                     mStates = states.SEEKING;
+                    
                 }
                 else
                 {
@@ -402,6 +417,18 @@ namespace TooCuteToLive
             if (mStates == states.EATING || mStates == states.SEEKING)
             {
                 mStates = states.WALKING;
+                if (mAge == age.BABY)
+                {
+                    mSprite.LoadEnum(mContent, spriteText.BABYJUMP, false);
+                }
+                else if (mAge == age.MEDIUM)
+                {
+                    mSprite.LoadEnum(mContent, spriteText.MIDJUMP, false);
+                }
+                else
+                {
+                    mSprite.LoadEnum(mContent, spriteText.FATTYJUMP, false);
+                }
             }
         }
     }
