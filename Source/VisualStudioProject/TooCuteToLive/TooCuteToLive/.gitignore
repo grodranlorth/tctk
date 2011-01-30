@@ -1,0 +1,5 @@
+TooCuteToLive/bin/
+TooCuteToLive/obj/
+TooCuteToLive/*.cachefile
+TooCuteToLive/*/*.cachefile
+TooCuteToLiveContent/obj/
