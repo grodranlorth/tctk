@@ -30,6 +30,11 @@ namespace TooCuteToLive
         /* Elapsed time */
         private float mElapsed;
 
+        private float tWidth;
+        private float tHeight;
+
+        private bool runOneTime;
+
         public AnimatedSprite() { }
 
         /// <summary>
@@ -39,13 +44,16 @@ namespace TooCuteToLive
         /// <param name="name">Name of the asset - assumes the animatedSprites folder</param>
         /// <param name="frameCount">number of frames</param>
         /// <param name="FPS">Frames Per Second</param>
-        public void Load(ContentManager content, string name, int frameCount, float FPS)
+        public void Load(ContentManager content, string name, int frameCount, float FPS, float width, float height, bool runOnce)
         {
             mFrameCount = frameCount;
             mTexture = content.Load<Texture2D>("AnimatedSprites/" + name);
             mFPS = FPS;
             mFrame = 0;
             mElapsed = 0.0f;
+            tHeight = height;
+            tWidth = width;
+            runOneTime = runOnce; 
         }
 
         /// <summary>
@@ -61,9 +69,27 @@ namespace TooCuteToLive
             {
                 mFrame++;
 
-                mFrame = mFrame % mFrameCount;
+                if (!runOneTime)
+                {
+                    mFrame = mFrame % mFrameCount;
+                }
+                
                 mElapsed -= mFPS;
             }
+        }
+
+        private Rectangle getRect(int frameNum)
+        {
+            int fpr = (int)(2048 / tWidth);
+            int gap = 2048 - (int)(tWidth * fpr);
+            int row = (int)((((frameNum + 1) * tWidth) + (gap * ((frameNum + 1) * tWidth) / 2048)) / 2048);
+           
+            int xpos = (frameNum - (row * fpr)) * (int)tWidth;
+            int ypos = row * (int)tHeight;
+            Rectangle myRect = new Rectangle(xpos, ypos, (int)tWidth, (int)tHeight);
+            Console.WriteLine(myRect); 
+            return myRect;
+
         }
 
         /// <summary>
@@ -74,7 +100,7 @@ namespace TooCuteToLive
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
             int width = mTexture.Width / mFrameCount;
-            Rectangle sourcerect = new Rectangle(width * mFrame, 0, width, mTexture.Height);
+            Rectangle sourcerect = getRect(mFrame);
 
             spriteBatch.Draw(mTexture, position, sourcerect, Color.White);
 
@@ -91,12 +117,12 @@ namespace TooCuteToLive
 
         public float getHeight()
         {
-            return mTexture.Height;
+            return tHeight;
         }
 
         public float getWidth()
         {
-            return mTexture.Width / mFrameCount;
+            return tWidth;
         }
     }
 }
