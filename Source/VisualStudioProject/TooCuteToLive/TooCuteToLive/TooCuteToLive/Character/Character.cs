@@ -139,8 +139,24 @@ namespace TooCuteToLive
             mPosition.Y += hopY[hopCounter];
             hopCounter++;
             if (hopCounter >= 20)
+            {
+                Random rand = new Random();
+                if (mPosition.Y > graphics.GraphicsDevice.Viewport.Height / 2)
+                {
+                    if (rand.Next(0, 6) <= 4)
+                        mPosition.Y -= 10.0f;
+                    else
+                        mPosition.Y += 10.0f;
+                }
+                else
+                {
+                    if (rand.Next(0, 6) <= 4)
+                        mPosition.Y += 10.0f;
+                    else
+                        mPosition.Y -= 10.0f;
+                }
                 hopCounter = 0;
-
+            }
             if (mPosition.X + getWidth() > graphics.GraphicsDevice.Viewport.Width)
                 mSpeed.X *= -1;
             else if (mPosition.X <= 0)

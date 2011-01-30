@@ -45,7 +45,9 @@ namespace TooCuteToLive
         private Item mItem;
         private Scoring mScoring;
         private Intro mIntro;
-        private float delay;
+
+        Random rand = new Random();
+        private int temp;
 
         public Game()
         {
@@ -77,11 +79,6 @@ namespace TooCuteToLive
             Class1.graph = graphics;
 
             mCharacterManager = CharacterManager.GetInstance(Content, graphics);
-            mCharacterManager.addCharacter("charMedium", Frames.CHAR_MED_FRAMES);
-            mCharacterManager.addCharacter("charMedium", Frames.CHAR_MED_FRAMES);
-            mCharacterManager.addCharacter("charMedium", Frames.CHAR_MED_FRAMES);
-            mCharacterManager.addCharacter("charMedium", Frames.CHAR_MED_FRAMES);
-            mCharacterManager.addCharacter("charMedium", Frames.CHAR_MED_FRAMES);
 
             mMenu = new Menu(this);
             mScoring = new Scoring();
@@ -97,6 +94,8 @@ namespace TooCuteToLive
             /* Number of seconds the level will run */
             timer = 60.0f;
 
+            temp = rand.Next(0, 10);
+
             base.Initialize();
         }
 
@@ -106,6 +105,7 @@ namespace TooCuteToLive
         /// </summary>
         protected override void LoadContent()
         {
+            AudioManager.Load(Content);
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -118,6 +118,9 @@ namespace TooCuteToLive
             cursor = Content.Load<Texture2D>("Cursor/fluffycursor");
             level = Content.Load<Texture2D>("Levels/Level_ver02");
             font = Content.Load<SpriteFont>("Fonts/kootenay");
+
+            for (int i = 0; i < 1; i++)
+                mCharacterManager.addCharacter("charMedium", Frames.CHAR_MED_FRAMES);
         }
 
         /// <summary>
@@ -140,14 +143,20 @@ namespace TooCuteToLive
             switch (mCurrentState)
             {
                 case GameStates.GAME:
+
+                    if (temp <= 4)
+                        AudioManager.Play(AudioManager.chillin);
+                    else
+                        AudioManager.Play(AudioManager.chillin2);
                     hud.Update(gameTime);
 
                     timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    if (timer <= 0)
+                    if (timer <= 0 || mCharacterManager.isEmpty())
                     {
+                        mScoring.Score = (int)timer;
                         mCurrentState = GameStates.SCORING;
                     }
-                    mCam.Zoom += (mouseStatePrev.ScrollWheelValue - mouseStateCurr.ScrollWheelValue)/100;
+//                    mCam.Zoom += (mouseStatePrev.ScrollWheelValue - mouseStateCurr.ScrollWheelValue)/100;
 
                     if (mouseStateCurr.LeftButton == ButtonState.Pressed && 
                         mouseStatePrev.LeftButton == ButtonState.Released)
