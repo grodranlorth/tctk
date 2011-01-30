@@ -30,9 +30,9 @@ namespace TooCuteToLive
 
         states mState;
 
-        public Weapon(string textureName, ContentManager cm)
+        public Weapon(string textureName, ContentManager cm, GraphicsDeviceManager graphics)
         {
-            mCharManager = CharacterManager.GetInstance(cm);
+            mCharManager = CharacterManager.GetInstance(cm, graphics);
             mTexture = cm.Load<Texture2D>("Weapons/" + textureName);
             mScale = new Vector2(1.0f, 0.0f);
             mStrikeTime = 0;
