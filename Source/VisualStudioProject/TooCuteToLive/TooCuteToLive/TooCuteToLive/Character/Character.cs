@@ -68,7 +68,8 @@ namespace TooCuteToLive
             //mSpeed = new Vector2(0, 0);
 
             mSprite = new AnimatedSprite();
-            mSprite.Load(mContent, "AnimatedSprites/" + mTextureName, frameCount, 30, 149, 139, false);
+            //mSprite.Load(mContent, "AnimatedSprites/" + mTextureName, frameCount, 30, 149, 139, false);
+            mSprite.Load(mContent, "AnimatedSprites/" + mTextureName, frameCount, 30, 120, 121, false);
 
 
             bSphere = new BoundingSphere(new Vector3(position.X + mSprite.getWidth() / 2, position.Y + mSprite.getHeight() / 2, 0), mSprite.getWidth() / 2);
@@ -190,10 +191,6 @@ namespace TooCuteToLive
                     yDir = (int)(yMove / Math.Abs(yMove));
                     mPosition.Y += mSpeed.Y * yDir;
                 }
-
-                Console.Write(mPosition);
-                Console.Write(destination);
-
             }
             else if (mStates == states.EATING)
             {
