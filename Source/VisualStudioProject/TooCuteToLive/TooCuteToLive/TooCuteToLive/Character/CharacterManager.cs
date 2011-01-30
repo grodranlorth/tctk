@@ -17,6 +17,7 @@ namespace TooCuteToLive
         ContentManager mContent;
         private List<Item> mItemList;
         GraphicsDeviceManager mGraphics;
+        private bool deleteCupcake;
 
         private Random rand = new Random();
 
@@ -48,6 +49,7 @@ namespace TooCuteToLive
             mContent = content;
             respawnRate = 4.0f;
             respawnTimer = 0.0f;
+            deleteCupcake = false;
         }
 
         public void Load()
@@ -73,57 +75,76 @@ namespace TooCuteToLive
         {
             List<Character> removeList = new List<Character>();
             mItemList = itemList;
+
             foreach (Character character in characterList)
             {
                 character.Update(gameTime, mGraphics);
-                if (mItemList.Count > 0)
+                foreach (Item i in itemList)
                 {
-//                    character.setSeek(true);
-                    foreach (Item item in mItemList)
+                    if (i.Position == character.Position)
                     {
-                        
-                        if (character.Distance > Math.Sqrt((double)(character.Position.X - item.Position.X) +
-                                                           (double)(character.Position.X - item.Position.Y)))
+                        i.eating = true;
+                    }
+                }
+                states state = character.getState();
+                character.Update(gameTime, mGraphics);
+                if (state == states.WALKING)
+                {
+
+                    if (mItemList.Count > 0)
+                    {
+                        character.setSeek(true);
+                        foreach (Item item in mItemList)
                         {
-                            character.Distance = (int)Math.Sqrt((double)(character.Position.X - item.Position.X) +
-                                                           (double)(character.Position.X - item.Position.Y));
-                            character.Destination = item.Position;
+
+                            double xS = (double)(character.Position.X - item.Position.X);
+                            double yS = (double)(character.Position.Y - item.Position.Y);
+
+                            if (character.Distance > Math.Sqrt(xS * xS + yS * yS))
+                            {
+                                character.Distance = (int)Math.Sqrt(Math.Sqrt(xS * xS + yS * yS));
+                                character.Destination = item.Position;
+                                // Console.WriteLine(item.Position);
+                            }
                         }
                     }
-                }
-//                else if (mItemList.Count == 0)
-//                    character.setSeek(false);
-
-                foreach (Character character1 in characterList)
-                {
-                    if (character.Collides(new Vector2(character1.BSphere.Center.X, character1.BSphere.Center.Y)))
+                    else if (mItemList.Count == 0)
                     {
-                        if (character.OnFire())
-                            character1.SetOnFire();
-                        else if (character1.OnFire())
-                            character.SetOnFire();
 
-//                        if (character.OnFire() && !character.MultipleOfTwo) 
-//                            character.Speed *= -2;
-//                        else 
-//                        {
-//                            character.Speed *= -1/2;
-//                            character.MultipleOfTwo = false;
-//                        }
-
-//                        if (character1.OnFire() && !character1.MultipleOfTwo)
-//                            character1.Speed *= -2;
-//                        else
-//                        {
-//                            character1.Speed *= -1/2;
-//                            character1.MultipleOfTwo = false;
-//                        }
+                        character.setSeek(false);
                     }
-                }
+                    //         }
+                    foreach (Character character1 in characterList)
+                    {
+                        if (character.Collides(character1.BSphere))
+                        {
+                            if (character.OnFire())
+                                character1.SetOnFire();
+                            else if (character1.OnFire())
+                                character.SetOnFire();
 
-                if (character.Remove == true)
-                {
-                     removeList.Add(character);
+                            //                        if (character.OnFire() && !character.MultipleOfTwo) 
+                            //                            character.Speed *= -2;
+                            //                        else 
+                            //                        {
+                            //                            character.Speed *= -1/2;
+                            //                            character.MultipleOfTwo = false;
+                            //                        }
+
+                            //                        if (character1.OnFire() && !character1.MultipleOfTwo)
+                            //                            character1.Speed *= -2;
+                            //                        else
+                            //                        {
+                            //                            character1.Speed *= -1/2;
+                            //                            character1.MultipleOfTwo = false;
+                            //                        }
+                        }
+                    }
+
+                    if (character.Remove == true)
+                    {
+                        removeList.Add(character);
+                    }
                 }
             }
             foreach (Character c in removeList)
@@ -146,6 +167,7 @@ namespace TooCuteToLive
             {
                 if (!character.OnFire() && character.Collides(point))
                 {
+                 //   Console.WriteLine("Killing at point " + point.X + " " + point.Y);
                     character.kill();
                 }
             }

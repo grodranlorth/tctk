@@ -112,6 +112,7 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Character\Character.cs" />
     <Compile Include="Character\CharacterManager.cs" />
+    <Compile Include="Character\CharacterStates.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Frames.cs" />
     <Compile Include="GameStates.cs" />

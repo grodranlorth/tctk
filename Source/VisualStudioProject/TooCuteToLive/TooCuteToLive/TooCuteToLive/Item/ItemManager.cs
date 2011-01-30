@@ -24,16 +24,28 @@ namespace TooCuteToLive
 
         public void addItem(string textureName, Vector2 position)
         {
-            AudioManager.oooooh.Play();
-            itemList.Add(new Item(textureName, position, mContent));
+            if (itemList.Count < 1)
+            {
+		AudioManager.oooooh.Play();
+                itemList.Add(new Item(textureName, position, mContent));
+            }
         }
 
         public void Update(GameTime gameTime)
         {
+            List<Item> removeList = new List<Item>();
+
             foreach (Item item in itemList)
             {
                 item.Update(gameTime);
 
+                if (item.Remove == true)
+                    removeList.Add(item);
+            }
+
+            foreach (Item item in removeList)
+            {
+                itemList.Remove(item);
             }
         }
 

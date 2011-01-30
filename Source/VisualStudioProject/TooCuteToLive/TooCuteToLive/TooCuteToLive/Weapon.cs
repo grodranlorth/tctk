@@ -191,10 +191,10 @@ namespace TooCuteToLive
             mState = states.GONE;
 
             mSprite = new AnimatedSprite();
-            mSprite.Load(cm, "Weapons/bombheart", 6, .5f);
+            mSprite.Load(cm, "Weapons/bombheart", 6, .5f, 117.6f, 100, false);
 
             mSpriteExp = new AnimatedSprite();
-            mSpriteExp.Load(cm, "AnimatedSprites/mushroomspritesheet", 12, .02f);
+            mSpriteExp.Load(cm, "AnimatedSprites/mushroomspritesheet", 12, .02f, 118, 127, false);
             mSpriteExp.Scale = 1.25f;
         }
 
