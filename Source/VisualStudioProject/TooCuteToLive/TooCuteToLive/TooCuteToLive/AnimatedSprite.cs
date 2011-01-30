@@ -48,43 +48,43 @@ namespace TooCuteToLive
             switch (st)
             {
                 case spriteText.BABYDEATH:
-                    Load(content, "babydeath", 17, 0.05f, 132.0f, 123.0f, runOnce);
+                    Load(content, "AnimatedSprites/babydeath", 17, 0.05f, 132.0f, 123.0f, runOnce);
                     break;
                 case spriteText.BABYEAT:
-                    Load(content, "babyeat", 16, 0.05f, 94.0f, 114.0f, runOnce);
+                    Load(content, "AnimatedSprites/babyeat", 16, 0.05f, 94.0f, 114.0f, runOnce);
                     break;
                 case spriteText.BABYJUMP:
                     Load(content, "AnimatedSprites/babyjump", 16, 0.05f, 93.0f, 122.0f, runOnce);
                     break;
                 case spriteText.BABYONFIRE:
-                    Load(content, "babyonfire", 16, 0.05f, 140.0f, 153.0f, runOnce);
+                    Load(content, "AnimatedSprites/babyonfire", 16, 0.05f, 146.0f, 155.0f, runOnce);
                     break;
                 case spriteText.BABYSPAWN:
-                    Load(content, "babyspawn", 8, 0.05f, 128.0f, 128.0f, runOnce);
+                    Load(content, "AnimatedSprites/babyspawn", 8, 0.05f, 128.0f, 128.0f, runOnce);
                     break;
                 case spriteText.FATTYDEATH:
-                    Load(content, "fattydeath", 28, 0.05f, 171.0f, 153.0f, runOnce);
+                    Load(content, "AnimatedSprites/fattydeath", 28, 0.05f, 171.0f, 153.0f, runOnce);
                     break;
                 case spriteText.FATTYEAT:
-                    Load(content, "fattyeat", 16, 0.05f, 127.0f, 135.0f, runOnce);
+                    Load(content, "AnimatedSprites/fattyeat", 16, 0.05f, 127.0f, 135.0f, runOnce);
                     break;
                 case spriteText.FATTYJUMP:
-                    Load(content, "fattyjump", 64, 0.05f, 131.0f, 139.0f, runOnce);
+                    Load(content, "AnimatedSprites/fattyjump", 64, 0.025f, 131.0f, 139.0f, runOnce);
                     break;
                 case spriteText.FATTYONFIRE:
-                    Load(content, "fattyonfire", 16, 0.05f, 174.0f, 152.0f, runOnce);
+                    Load(content, "AnimatedSprites/fattyonfire", 16, 0.05f, 174.0f, 152.0f, runOnce);
                     break;
                 case spriteText.MIDDEATH:
-                    Load(content, "middeath", 37, 0.05f, 158.0f, 139.0f, runOnce);
+                    Load(content, "AnimatedSprites/middeath", 37, 0.05f, 158.0f, 139.0f, runOnce);
                     break;
                 case spriteText.MIDEAT:
-                    Load(content, "mideat", 16, 0.05f, 123.0f, 128.0f, runOnce);
+                    Load(content, "AnimatedSprites/mideat", 16, 0.05f, 123.0f, 128.0f, runOnce);
                     break;
                 case spriteText.MIDJUMP:
-                    Load(content, "midjump", 16, 0.05f, 120.0f, 128.0f, runOnce);
+                    Load(content, "AnimatedSprites/midjump", 16, 0.05f, 120.0f, 128.0f, runOnce);
                     break;
                 case spriteText.MIDONFIRE:
-                    Load(content, "midonfire", 12, 0.05f, 141.0f, 157.0f, runOnce);
+                    Load(content, "AnimatedSprites/midonfire", 12, 0.05f, 145.0f, 162.0f, runOnce);
                     break;
             } 
 
@@ -135,7 +135,8 @@ namespace TooCuteToLive
         }
 
         private Rectangle getRect(int frameNum)
-        {
+        {   
+            
             int tW = mTexture.Width;
             int fpr = (int)(tW / tWidth);
             int gap = tW - (int)(tWidth * fpr);
