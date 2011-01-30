@@ -41,6 +41,11 @@ namespace TooCuteToLive
             mWlist.Add(new WHeart(cm, gm));
         }
 
+        public bool checkReady()
+        {
+            return (mWlist[mCurwep].Ready());
+        }
+
         public void UseCur(Vector2 pos, int mousey)
         {
             if (!mWlist[mCurwep].Ready())

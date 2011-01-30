@@ -104,7 +104,9 @@ namespace TooCuteToLive
             mFPS = FPS;
             mFrame = 0;
             mElapsed = 0.0f;
+
             mScale = 0.5f;
+
             tHeight = height;
             tWidth = width;
             runOneTime = runOnce; 
