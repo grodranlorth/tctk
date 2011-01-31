@@ -55,9 +55,7 @@ namespace TooCuteToLive
             if (!mWlist[mCurwep].Ready())
                 return;
 
-            if (rand.Next(0, 10) <= 4)
-                AudioManager.notAgain.Play();
-            else
+            if (rand.Next(0, 10) <= 3)
                 AudioManager.yourMean.Play();
 
             mWlist[mCurwep].Strike(pos, 1, mousey);

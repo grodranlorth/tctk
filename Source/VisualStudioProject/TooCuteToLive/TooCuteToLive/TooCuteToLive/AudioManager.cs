@@ -21,8 +21,8 @@ namespace TooCuteToLive
         public static SoundEffect hiSource;
         public static SoundEffectInstance hi;
         
-        public static SoundEffect notAgainSource;
-        public static SoundEffectInstance notAgain;
+        //public static SoundEffect notAgainSource;
+        //public static SoundEffectInstance notAgain;
         
         public static SoundEffect owwSource;
         public static SoundEffectInstance oww;
