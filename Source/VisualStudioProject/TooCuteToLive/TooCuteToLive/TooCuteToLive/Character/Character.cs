@@ -24,6 +24,7 @@ namespace TooCuteToLive
         private float timeOnFire;
         private float timeEating;
         private float respawnRate;
+        private float timespawning;
 
         private float[] hopY = { 1.0f, 0.0f, 2.0f, 0.0f, 3.0f, 0.0f, 4.0f, 0.0f, 5.0f, 0.0f, -1.0f, 0.0f, -2.0f, 0.0f, -3.0f, 0.0f, -4.0f, 0.0f, -5.0f, 0.0f};
         private int hopCounter = 0;
@@ -35,6 +36,7 @@ namespace TooCuteToLive
         private bool remove;
 
         private Texture2D hacktex;
+       
 
         private Random rand;
 
@@ -65,13 +67,13 @@ namespace TooCuteToLive
             mTextureName = textureName;
             mPosition = position;
             mAge = age.MEDIUM;
-            mStates = states.WALKING;
+            mStates = states.SPAWNING;
             mSpeed = new Vector2(1.0f, 0.25f);
             //mSpeed = new Vector2(0, 0);
 
             mSprite = new AnimatedSprite();
             //mSprite.Load(mContent, "AnimatedSprites/" + mTextureName, frameCount, 30, 149, 139, false);
-            mSprite.Load(mContent, "AnimatedSprites/" + mTextureName, frameCount, 30, 120, 121, false);
+            mSprite.Load(mContent, "AnimatedSprites/" + mTextureName, frameCount, 0.125f, 128, 128, false);
 
 
             bSphere = new BoundingSphere(new Vector3(position.X + mSprite.getWidth() / 2, position.Y + mSprite.getHeight() / 2, 0), mSprite.getWidth() / 2);
@@ -87,6 +89,7 @@ namespace TooCuteToLive
             hacktex = Class1.CreateCircle((int)mSprite.getWidth() / 2, Color.Yellow);
 
             rand = new Random();
+            timespawning = 2.0f;
         }
 
         public void changeImage(string textureName, int numFrames)
@@ -113,7 +116,21 @@ namespace TooCuteToLive
             }
             mSprite.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
-            if (mStates == states.ONFIRE)
+
+            if (mStates == states.SPAWNING)
+            {
+                if (timespawning > 0)
+                {
+                    timespawning =- gameTime.ElapsedGameTime.Seconds;
+                }
+                else
+                {
+                    mSprite.LoadEnum(mContent, spriteText.BABYJUMP, false);
+                    mStates = states.WALKING;
+
+                }
+            }
+            else if (mStates == states.ONFIRE)
             {
                 timeOnFire -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (timeOnFire <= 0)
@@ -135,39 +152,39 @@ namespace TooCuteToLive
             }
             else if (mStates == states.WALKING)
             {
-		        mPosition.X += mSpeed.X;
-		        mPosition.Y += hopY[hopCounter];
-		        hopCounter++;
-		        if (hopCounter >= 20)
-		        {
-			        if (mPosition.Y > graphics.GraphicsDevice.Viewport.Height / 10)
-			        {
+                mPosition.X += mSpeed.X;
+                mPosition.Y += hopY[hopCounter];
+                hopCounter++;
+                if (hopCounter >= 20)
+                {
+                    if (mPosition.Y > graphics.GraphicsDevice.Viewport.Height / 10)
+                    {
                         if (rand.Next(0, 7) <= 4)
                             mPosition.Y -= 10.0f;
                         else
                             mPosition.Y += 10.0f;
-			        }
-			        else
-			        {
-			            if (rand.Next(0, 6) <= 4)
-				        mPosition.Y += 10.0f;
-			            else
-				        mPosition.Y -= 10.0f;
-			        }
+                    }
+                    else
+                    {
+                        if (rand.Next(0, 6) <= 4)
+                            mPosition.Y += 10.0f;
+                        else
+                            mPosition.Y -= 10.0f;
+                    }
 
-			        hopCounter = 0;
+                    hopCounter = 0;
                 }
 
-		        if (mPosition.X + getWidth() > graphics.GraphicsDevice.Viewport.Width)
-			        mSpeed.X *= -1;
-		        else if (mPosition.X <= 0)
-			        mSpeed.X *= -1;
-		        if (mPosition.Y + getHeight() > graphics.GraphicsDevice.Viewport.Height)
-			        mSpeed.Y *= -1;
-		        else if (mPosition.Y <= 0)
-			        mSpeed.Y *= -1;
+                if (mPosition.X + getWidth() > graphics.GraphicsDevice.Viewport.Width)
+                    mSpeed.X *= -1;
+                else if (mPosition.X <= 0)
+                    mSpeed.X *= -1;
+                if (mPosition.Y + getHeight() > graphics.GraphicsDevice.Viewport.Height)
+                    mSpeed.Y *= -1;
+                else if (mPosition.Y <= 0)
+                    mSpeed.Y *= -1;
 
-	        }
+            }
             else if (mStates == states.SEEKING)
             {
                 mSpeed.X = 1;
@@ -181,7 +198,7 @@ namespace TooCuteToLive
                     Math.Abs(mPosition.Y - destination.Y) < 20)
                 {
                     mStates = states.EATING;
-                } 
+                }
 
                 if (mPosition.X != destination.X)
                 {

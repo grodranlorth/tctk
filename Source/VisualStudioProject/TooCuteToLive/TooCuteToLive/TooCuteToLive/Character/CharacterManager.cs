@@ -57,6 +57,15 @@ namespace TooCuteToLive
 
         }
 
+        public void addBaby()
+        {
+            float xPos = (float)rand.Next(0, 800);
+            float yPos = (float)rand.Next(0, 600);
+            Vector2 babyPos = new Vector2(xPos, yPos);
+            addCharacter("babyspawn", Frames.CHAR_BABY_SPAWN_FRAMES);
+
+        }
+
         public void addCharacter(string textureName,int frameCount)
         {
             AudioManager.Play(AudioManager.hi);
@@ -201,7 +210,7 @@ namespace TooCuteToLive
             respawnTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (respawnTimer >= respawnRate)
             {
-                addCharacter("charMedium", Frames.CHAR_MED_FRAMES);
+                addBaby();
                 respawnTimer = 0;
             }
         }
