@@ -81,11 +81,11 @@ namespace TooCuteToLive
                 character.Update(gameTime, mGraphics);
                 foreach (Item i in itemList)
                 {
-                    if (i.Position == character.Position)
-                    {
+                    if ((Math.Abs(i.Position.X - character.Position.X) < 10) &&
+                        Math.Abs(i.Position.Y - character.Position.Y) < 10)
                         i.eating = true;
-                    }
                 }
+
                 states state = character.getState();
                 character.Update(gameTime, mGraphics);
                 if (state == states.WALKING)
