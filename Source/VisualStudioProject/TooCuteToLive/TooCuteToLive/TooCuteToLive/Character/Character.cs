@@ -66,7 +66,7 @@ namespace TooCuteToLive
             mContent = content;
             mTextureName = textureName;
             mPosition = position;
-            mAge = age.MEDIUM;
+            mAge = age.BABY;
             mStates = states.SPAWNING;
             mSpeed = new Vector2(1.0f, 0.25f);
             //mSpeed = new Vector2(0, 0);
@@ -133,10 +133,46 @@ namespace TooCuteToLive
             else if (mStates == states.ONFIRE)
             {
                 timeOnFire -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (mPosition.X > graphics.GraphicsDevice.Viewport.Width / 2)
+                {
+                    mSpeed.X = 2;
+                }
+                else
+                {
+                    mSpeed.X = -2;
+                }
+
+                if (mPosition.Y > graphics.GraphicsDevice.Viewport.Height / 2)
+                {
+                    mSpeed.Y = 2;
+                }
+                else
+                {
+                    mSpeed.Y = -2;
+                }
+
+                mPosition.X += mSpeed.X;
+                mPosition.Y += mSpeed.Y; 
+
                 if (timeOnFire <= 0)
                 {
+                   if (mAge == age.BABY)
+                   {
+                        mSprite.LoadEnum(mContent, spriteText.BABYDEATH, true);
+
+                   }
+                   else if (mAge == age.BABY)
+                   {
+                       mSprite.LoadEnum(mContent, spriteText.MIDDEATH, true);
+                   }
+                   else
+                   {
+                       mSprite.LoadEnum(mContent, spriteText.FATTYDEATH, true);
+                   }
                     mStates = states.DEAD;
                     timeOnFire = 0.5f;
+                    
                 }
             }
             else if (mStates == states.DEAD)
@@ -220,7 +256,17 @@ namespace TooCuteToLive
                 if (timeEating < 0)
                 {
                     mStates = states.WALKING;
-                    mAge++;
+                    if (mAge == age.BABY) {
+                        mAge = age.MEDIUM;
+                        mStates = states.WALKING;
+                        timeEating = 15.0f;
+                        mSprite.LoadEnum(mContent, spriteText.MIDJUMP, false);
+                    }
+                    else if (mAge == age.MEDIUM)
+                    {
+                        mAge = age.FAT;
+                        mSprite.LoadEnum(mContent, spriteText.FATTYJUMP, false);
+                    }
                 }
 
             }
@@ -282,7 +328,15 @@ namespace TooCuteToLive
                     break;
             }
             mStates = states.ONFIRE;
-            changeImage("charMediumOnFire", Frames.CHAR_MED_ON_FIRE_FRAMES);
+            if (mAge == age.BABY) {
+                mSprite.LoadEnum(mContent, spriteText.BABYONFIRE, false);
+            } else if (mAge == age.MEDIUM) {
+                mSprite.LoadEnum(mContent, spriteText.MIDONFIRE, false);
+            }
+            else
+            {
+                mSprite.LoadEnum(mContent, spriteText.FATTYONFIRE, false);
+            }
         }
 
         public void setSeek(bool SEEK)
