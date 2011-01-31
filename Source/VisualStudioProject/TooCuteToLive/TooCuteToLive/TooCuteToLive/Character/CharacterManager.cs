@@ -68,7 +68,9 @@ namespace TooCuteToLive
 
         public void addCharacter(string textureName,int frameCount)
         {
-            AudioManager.Play(AudioManager.hi);
+            if (HackRandom.rand.Next(0, 4) == 0)
+                AudioManager.Play(AudioManager.hi);
+
             characterList.Add(new Character(textureName, 
                               new Vector2(rand.Next(100, mGraphics.GraphicsDevice.Viewport.Width - 100), 
                                           rand.Next(200, mGraphics.GraphicsDevice.Viewport.Height - 100)),
