@@ -20,6 +20,7 @@ namespace TooCuteToLive
         private float mTexscale;
         private Rectangle rect;
         private string name;
+        private float moshrink;
 
         public float texScale
         {
@@ -43,6 +44,12 @@ namespace TooCuteToLive
             get { return name; }
         }
 
+        public float moShrink
+        {
+            get { return moshrink; }
+            set { moshrink = value; }
+        }
+
         public Button(Game g, ContentManager cm, string texname, string tname, float x,
             float y, int fc, float fps, float width, float height, bool once, string s)
         {
@@ -57,12 +64,17 @@ namespace TooCuteToLive
             name = s;
 
             mover = false;
+            moshrink = 1;
         }
 
         public bool MouseOver(MouseState mousepos)
         {
-            return mousepos.X > mpos.X && mousepos.X < mpos.X + mTex.Width*mTexscale &&
-                mousepos.Y > mpos.Y && mousepos.Y < mpos.Y + mTex.Height*mTexscale;
+            float th = mTex.Height * mTexscale * moshrink;
+
+            float yadd = (mTex.Height * mTexscale - mTex.Height * mTexscale * moshrink)/2;
+
+            return mousepos.X > mpos.X && mousepos.X < mpos.X + mTex.Width &&
+                mousepos.Y > mpos.Y + yadd && mousepos.Y < mpos.Y + th + yadd;
         }
 
         public void Draw(SpriteBatch sb)
@@ -125,16 +137,19 @@ namespace TooCuteToLive
                 g.GraphicsDevice.Viewport.Width / 10, (g.GraphicsDevice.Viewport.Height) - 350, 8, 0.05f, 435.5f, 193, false, "play"));
             mBlist.Last.Value.texScale = 0.5f;
             mBlist.Last.Value.Spritescale = 0.67f;
+            mBlist.Last.Value.moShrink = .6f;
 
             mBlist.AddLast(new Button(g, content, "Menu/helpbutton", "AnimatedSprites/helpbuttonspritesheet", g.GraphicsDevice.Viewport.Width / 8,
                 g.GraphicsDevice.Viewport.Height - 250, 8, 0.05f, 438f, 283, false, "help"));
             mBlist.Last.Value.texScale = 0.5f;
             mBlist.Last.Value.Spritescale = 0.5f;
+            mBlist.Last.Value.moShrink = .6f;
 
             mBlist.AddLast(new Button(g, content, "Menu/creditsbutton", "AnimatedSprites/creditsbuttonspritesheet", g.GraphicsDevice.Viewport.Width / 6,
                 g.GraphicsDevice.Viewport.Height - 150, 8, 0.05f, 508f, 196, false, "credit"));
             mBlist.Last.Value.texScale = 0.5f;
             mBlist.Last.Value.Spritescale = .67f;
+            mBlist.Last.Value.moShrink = .6f;
 
             back = new Button(g, content, "Menu/backbutton", "AnimatedSprites/backbuttonspritesheet", g.GraphicsDevice.Viewport.Width*0.23f,
                 (g.GraphicsDevice.Viewport.Height) - 150, 8, 0.05f, 455f, 234, false, "back");
