@@ -56,8 +56,8 @@ namespace TooCuteToLive
             hiSource = content.Load<SoundEffect>("Sounds/SFX_hi");
             hi = hiSource.CreateInstance();
 
-            notAgainSource = content.Load<SoundEffect>("Sounds/SFX_notagain");
-            notAgain = notAgainSource.CreateInstance();
+            //notAgainSource = content.Load<SoundEffect>("Sounds/SFX_notagain");
+            //notAgain = notAgainSource.CreateInstance();
                 
             owwSource = content.Load<SoundEffect>("Sounds/SFX_oww");
             oww = owwSource.CreateInstance();
@@ -77,8 +77,8 @@ namespace TooCuteToLive
             tickBoomSource = content.Load<SoundEffect>("Sounds/SFX_3tickboom");
             tickBoom = tickBoomSource.CreateInstance();
 
-            missileSource = content.Load<SoundEffect>("Sounds/SFX_missle");
-            missile = missileSource.CreateInstance();
+            //missileSource = content.Load<SoundEffect>("Sounds/SFX_missle");
+            //missile = missileSource.CreateInstance();
 
             pewSource = content.Load<SoundEffect>("Sounds/SFX_pew");
             pew = pewSource.CreateInstance();

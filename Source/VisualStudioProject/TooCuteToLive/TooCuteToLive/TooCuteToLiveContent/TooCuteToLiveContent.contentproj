@@ -148,11 +148,6 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Sounds\SFX_notagain.wav">
-      <Name>SFX_notagain</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
     <Compile Include="Sounds\SFX_oww.wav">
       <Name>SFX_oww</Name>
       <Importer>WavImporter</Importer>
@@ -165,11 +160,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sounds\BGM_take2.wav">
-      <Name>BGM_take2</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
     <Compile Include="Sounds\SFX_ooooh.wav">
       <Name>SFX_ooooh</Name>
       <Importer>WavImporter</Importer>
@@ -189,11 +179,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sounds\SFX_missle.wav">
-      <Name>SFX_missle</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
     <Compile Include="Sounds\SFX_pew.wav">
       <Name>SFX_pew</Name>
       <Importer>WavImporter</Importer>

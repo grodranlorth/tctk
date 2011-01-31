@@ -193,6 +193,16 @@ namespace TooCuteToLive
                 {
                  //   Console.WriteLine("Killing at point " + point.X + " " + point.Y);
                     character.kill();
+                    int c = HackRandom.rand.Next(0, 3);
+                    switch (c)
+                    {
+                        case 0:
+                            AudioManager.ouch.Play();
+                            break;
+                        case 1:
+                            AudioManager.oww.Play();
+                            break;
+                    }
                 }
             }
         }
