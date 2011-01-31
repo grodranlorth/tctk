@@ -170,7 +170,6 @@ namespace TooCuteToLive
 
             foreach (Character c in removeList)
             {
-                Console.WriteLine(".");
                 characterList.Remove(c);
             }
         }

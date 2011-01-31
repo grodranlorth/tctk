@@ -64,9 +64,10 @@ namespace TooCuteToLive
 //                    mHUDCam.get_transformation());
 
 
-            spriteBatch.Draw(bombIcon, new Vector2(graphics.GraphicsDevice.Viewport.Width - 250, 50.0f), Color.White);
-            spriteBatch.Draw(missileIcon, new Vector2(graphics.GraphicsDevice.Viewport.Width - 150, 50.0f), Color.White);
-            spriteBatch.Draw(rainbowIcon, new Vector2(graphics.GraphicsDevice.Viewport.Width - 350, 50.0f), Color.White);
+            
+            spriteBatch.Draw(missileIcon, new Vector2(249, 912), Color.White);
+            spriteBatch.Draw(bombIcon, new Vector2(180, 912), Color.White);
+            spriteBatch.Draw(rainbowIcon, new Vector2(109, 912), Color.White);
             spriteBatch.Draw(fluffyHUD, new Vector2(graphics.GraphicsDevice.Viewport.Width / 20, graphics.GraphicsDevice.Viewport.Height - 125.0f), Color.White);
             spriteBatch.Draw(cursor, new Vector2(mouseStateCurr.X, mouseStateCurr.Y), Color.White);
 //            spriteBatch.End();
