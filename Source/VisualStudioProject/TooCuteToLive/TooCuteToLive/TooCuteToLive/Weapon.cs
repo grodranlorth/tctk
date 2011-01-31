@@ -152,6 +152,8 @@ namespace TooCuteToLive
             mOnScreenTime = 0.5f;
             /* XXX: So many magic numbers, whats one more? */
             mAnimSpeed = mStrikePos.Y / 10000;
+            if ( HackRandom.rand.Next(0, 5) == 0)
+                AudioManager.Play(AudioManager.pew);
         }
 
         public override void Draw(SpriteBatch sb)

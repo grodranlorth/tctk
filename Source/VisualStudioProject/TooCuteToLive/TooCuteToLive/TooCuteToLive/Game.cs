@@ -120,7 +120,7 @@ namespace TooCuteToLive
             level = Content.Load<Texture2D>("Levels/Level_ver02");
             font = Content.Load<SpriteFont>("Fonts/kootenay");
 
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 5; i++)
                 mCharacterManager.addBaby();
         }
 
@@ -195,8 +195,7 @@ namespace TooCuteToLive
                     break;
 
                 case GameStates.INTRO:
-                    //mIntro.Update(gameTime, ref mCurrentState);
-                    mCurrentState = GameStates.GAME;
+                    mIntro.Update(gameTime, ref mCurrentState);
                     break;
 
                 case GameStates.SCORING:
