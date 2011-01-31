@@ -247,12 +247,13 @@ namespace TooCuteToLive
         {
             //return (bSphere.Contains(new Vector3(point.X, point.Y, 0.0f)) == ContainmentType.Contains);
 
-            Vector2 c = new Vector2(mPosition.X + mSprite.getWidth() / 2, mPosition.Y +  mSprite.getHeight() / 2);
+            Vector2 c = new Vector2(mPosition.X + 25, mPosition.Y +  30);
+
             double dist = Math.Sqrt(Math.Pow((c.X - point.X), 2) + Math.Pow((c.Y - point.Y), 2));
             //Console.WriteLine("center: " + c.X + " " + c.Y + " Point: " + point.X + " " + point.Y);
             //Console.WriteLine("dist: " + dist);
 
-            return dist <= mSprite.getWidth() / 2;
+            return dist <= 40;
         }
 
         public void kill()
