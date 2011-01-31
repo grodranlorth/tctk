@@ -160,15 +160,17 @@ namespace TooCuteToLive
                             //                        }
                         }
                     }
+                }
 
-                    if (character.Remove == true)
-                    {
-                        removeList.Add(character);
-                    }
+                if (character.Remove == true)
+                {
+                    removeList.Add(character);
                 }
             }
+
             foreach (Character c in removeList)
             {
+                Console.WriteLine(".");
                 characterList.Remove(c);
             }
         }
