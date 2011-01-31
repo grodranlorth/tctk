@@ -36,6 +36,8 @@ namespace TooCuteToLive
 
         private Texture2D hacktex;
 
+        private Random rand;
+
         age mAge;
 
         states mStates;
@@ -83,6 +85,8 @@ namespace TooCuteToLive
             remove = false;
             multipleOfTwo = false;
             hacktex = Class1.CreateCircle((int)mSprite.getWidth() / 2, Color.Yellow);
+
+            rand = new Random();
         }
 
         public void changeImage(string textureName, int numFrames)
@@ -136,7 +140,6 @@ namespace TooCuteToLive
 		        hopCounter++;
 		        if (hopCounter >= 20)
 		        {
-			        Random rand = new Random();
 			        if (mPosition.Y > graphics.GraphicsDevice.Viewport.Height / 10)
 			        {
                         if (rand.Next(0, 7) <= 4)
