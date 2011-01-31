@@ -110,6 +110,7 @@ namespace TooCuteToLive
             if (mStates != states.DEAD)
             {
                 bSphere.Center = new Vector3(mPosition.X + mSprite.getWidth() / 2, mPosition.Y + mSprite.getHeight() / 2, 0.0f);
+
             }
             mSprite.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
@@ -171,14 +172,16 @@ namespace TooCuteToLive
 
                 if (mAge != age.FAT)
                     mPosition.Y += hopY[hopCounter];
-                else
-                    mPosition.Y += fathopY[hopCounter];
+                //else
+                    //mPosition.Y += fathopY[hopCounter];
 
                 hopCounter++;
 
                 if (hopCounter >= 20)
                 {
-                    if (mPosition.Y > graphics.GraphicsDevice.Viewport.Height / 10)
+                    if (mAge == age.FAT)
+                        hopCounter = 0;
+                    else if (mPosition.Y > graphics.GraphicsDevice.Viewport.Height / 10)
                     {
                         if (HackRandom.rand.Next(0, 7) <= 4)
                             mPosition.Y -= 10.0f;
@@ -248,7 +251,7 @@ namespace TooCuteToLive
                     if (mAge == age.BABY) {
                         mAge = age.MEDIUM;
                         mStates = states.WALKING;
-                        timeEating = 15.0f;
+                        timeEating = 2.0f;
                         mSprite.LoadEnum(mContent, spriteText.MIDJUMP, false);
                     }
                     else if (mAge == age.MEDIUM)
@@ -380,7 +383,7 @@ namespace TooCuteToLive
 
         public void CeaseEating()
         {
-            if (mStates == states.EATING || mStates == states.SEEKING)
+            /*if (mStates == states.EATING || mStates == states.SEEKING)
             {
                 mStates = states.WALKING;
                 if (mAge == age.BABY)
@@ -395,7 +398,7 @@ namespace TooCuteToLive
                 {
                     mSprite.LoadEnum(mContent, spriteText.FATTYJUMP, false);
                 }
-            }
+            }*/
         }
     }
 }
