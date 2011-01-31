@@ -47,7 +47,6 @@ namespace TooCuteToLive
         private Intro mIntro;
 
         Random rand = new Random();
-        private int temp;
 
         public Game()
         {
@@ -93,8 +92,6 @@ namespace TooCuteToLive
 
             /* Number of seconds the level will run */
             timer = 60.0f;
-
-            temp = rand.Next(0, 10);
 
             base.Initialize();
         }
@@ -144,10 +141,12 @@ namespace TooCuteToLive
             {
                 case GameStates.GAME:
                     mCharacterManager.respawn(timer, gameTime);
-                    if (temp <= 4)
+                    if (AudioManager.chillin.State != SoundState.Playing)
+                    {
+                        AudioManager.chillin2.Stop();
                         AudioManager.Play(AudioManager.chillin);
-                    else
-                        AudioManager.Play(AudioManager.chillin2);
+                    }
+
                     hud.Update(gameTime, wM);
 
                     timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -182,6 +181,12 @@ namespace TooCuteToLive
                     break;
 
                 case GameStates.MENU:
+                    if (AudioManager.chillin2.State != SoundState.Playing)
+                    {
+                        AudioManager.chillin.Stop();
+                        AudioManager.Play(AudioManager.chillin2);
+                    }
+
                     mMenu.Update(gameTime, ref mCurrentState);
                     break;
 
@@ -231,8 +236,9 @@ namespace TooCuteToLive
                                      SpriteEffects.None, 0.0f);
                     spriteBatch.DrawString(font, "Time: " + (int)timer, new Vector2(100.0f, 30.0f), Color.Black);
 
-                    mCharacterManager.Draw(spriteBatch);
+
                     mItemManager.Draw(spriteBatch);
+                    mCharacterManager.Draw(spriteBatch);
                     wM.Draw(spriteBatch);
                     hud.Draw(spriteBatch, graphics);
 

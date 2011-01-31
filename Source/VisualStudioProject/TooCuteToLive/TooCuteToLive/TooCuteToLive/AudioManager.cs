@@ -65,7 +65,7 @@ namespace TooCuteToLive
             youreMeanSource = content.Load<SoundEffect>("Sounds/SFX_youremean");
             yourMean = youreMeanSource.CreateInstance();
 
-            chillin2Source = content.Load<SoundEffect>("Sounds/2qt2livmusic");
+            chillin2Source = content.Load<SoundEffect>("Sounds/BGM_take1");
             chillin2 = chillin2Source.CreateInstance();
 
             ooooohSource = content.Load<SoundEffect>("Sounds/SFX_ooooh");
