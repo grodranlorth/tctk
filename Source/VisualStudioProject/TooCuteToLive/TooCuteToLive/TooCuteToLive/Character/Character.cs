@@ -27,6 +27,7 @@ namespace TooCuteToLive
         private float timespawning;
 
         private float[] hopY = { 1.0f, 0.0f, 2.0f, 0.0f, 3.0f, 0.0f, 4.0f, 0.0f, 5.0f, 0.0f, -1.0f, 0.0f, -2.0f, 0.0f, -3.0f, 0.0f, -4.0f, 0.0f, -5.0f, 0.0f};
+        private float[] fathopY = { 1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
         private int hopCounter = 0;
 
         private bool multipleOfTwo;
@@ -167,8 +168,14 @@ namespace TooCuteToLive
             else if (mStates == states.WALKING)
             {
                 mPosition.X += mSpeed.X;
-                mPosition.Y += hopY[hopCounter];
+
+                if (mAge != age.FAT)
+                    mPosition.Y += hopY[hopCounter];
+                else
+                    mPosition.Y += fathopY[hopCounter];
+
                 hopCounter++;
+
                 if (hopCounter >= 20)
                 {
                     if (mPosition.Y > graphics.GraphicsDevice.Viewport.Height / 10)
