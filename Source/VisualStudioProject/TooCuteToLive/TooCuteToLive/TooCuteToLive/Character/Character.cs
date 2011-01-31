@@ -36,9 +36,6 @@ namespace TooCuteToLive
         private bool remove;
 
         private Texture2D hacktex;
-       
-
-        private Random rand;
 
         age mAge;
 
@@ -88,7 +85,6 @@ namespace TooCuteToLive
             multipleOfTwo = false;
             hacktex = Class1.CreateCircle((int)mSprite.getWidth() / 2, Color.Yellow);
 
-            rand = new Random();
             timespawning = 2.0f;
         }
 
@@ -134,24 +130,6 @@ namespace TooCuteToLive
             {
                 timeOnFire -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                if (mPosition.X > graphics.GraphicsDevice.Viewport.Width / 2)
-                {
-                    mSpeed.X = 2;
-                }
-                else
-                {
-                    mSpeed.X = -2;
-                }
-
-                if (mPosition.Y > graphics.GraphicsDevice.Viewport.Height / 2)
-                {
-                    mSpeed.Y = 2;
-                }
-                else
-                {
-                    mSpeed.Y = -2;
-                }
-
                 mPosition.X += mSpeed.X;
                 mPosition.Y += mSpeed.Y; 
 
@@ -195,14 +173,14 @@ namespace TooCuteToLive
                 {
                     if (mPosition.Y > graphics.GraphicsDevice.Viewport.Height / 10)
                     {
-                        if (rand.Next(0, 7) <= 4)
+                        if (HackRandom.rand.Next(0, 7) <= 4)
                             mPosition.Y -= 10.0f;
                         else
                             mPosition.Y += 10.0f;
                     }
                     else
                     {
-                        if (rand.Next(0, 6) <= 4)
+                        if (HackRandom.rand.Next(0, 6) <= 4)
                             mPosition.Y += 10.0f;
                         else
                             mPosition.Y -= 10.0f;
@@ -210,15 +188,6 @@ namespace TooCuteToLive
 
                     hopCounter = 0;
                 }
-
-                if (mPosition.X + getWidth() > graphics.GraphicsDevice.Viewport.Width)
-                    mSpeed.X *= -1;
-                else if (mPosition.X <= 0)
-                    mSpeed.X *= -1;
-                if (mPosition.Y + getHeight() > graphics.GraphicsDevice.Viewport.Height)
-                    mSpeed.Y *= -1;
-                else if (mPosition.Y <= 0)
-                    mSpeed.Y *= -1;
 
             }
             else if (mStates == states.SEEKING)
@@ -271,6 +240,15 @@ namespace TooCuteToLive
 
             }
             //bSphere.Center = new Vector3(mPosition.X, mPosition.Y, 0.0f);
+
+            if (mPosition.X + getWidth() > graphics.GraphicsDevice.Viewport.Width)
+                mSpeed.X *= -1;
+            else if (mPosition.X <= 0)
+                mSpeed.X *= -1;
+            if (mPosition.Y + getHeight() > graphics.GraphicsDevice.Viewport.Height)
+                mSpeed.Y *= -1;
+            else if (mPosition.Y <= 0)
+                mSpeed.Y *= -1;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -304,29 +282,10 @@ namespace TooCuteToLive
 
         public void kill()
         {
-            Random rand = new Random();
-            switch (rand.Next(0, 3))
-            {
-                case 0:
-                    mSpeed.X = 3;
-                    mSpeed.Y = 1;
-                    break;
+            float angle = HackRandom.rand.Next(0, 360);
+            mSpeed.X = (float)Math.Cos(angle) * 3;
+            mSpeed.Y = (float)Math.Sin(angle) * 3;
 
-                case 1:
-                    mSpeed.X = -3;
-                    mSpeed.Y = 1;
-                    break;
-
-                case 2:
-                    mSpeed.X = 1;
-                    mSpeed.Y = 3;
-                    break;
-
-                case 3:
-                    mSpeed.X = 1;
-                    mSpeed.Y = -3;
-                    break;
-            }
             mStates = states.ONFIRE;
             if (mAge == age.BABY) {
                 mSprite.LoadEnum(mContent, spriteText.BABYONFIRE, false);

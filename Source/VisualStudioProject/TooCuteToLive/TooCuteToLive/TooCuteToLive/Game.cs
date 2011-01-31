@@ -11,6 +11,11 @@ using Microsoft.Xna.Framework.Media;
 
 namespace TooCuteToLive
 {
+    public static class HackRandom
+    {
+        public static Random rand = new Random();
+    }
+
     /// <summary>
     /// This is the main type for your game
     /// </summary>
@@ -42,7 +47,6 @@ namespace TooCuteToLive
         private GameStates mCurrentState = GameStates.MENU;
 
         private Menu mMenu;
-        private Item mItem;
         private Scoring mScoring;
         private Intro mIntro;
 
