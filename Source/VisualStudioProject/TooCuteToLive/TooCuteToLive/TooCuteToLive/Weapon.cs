@@ -175,7 +175,7 @@ namespace TooCuteToLive
         private const float gravity = .1f, maxgrav = 40;
         private Vector2 mPos, mSpeed;
         private AnimatedSprite mSprite, mSpriteExp;
-        private bool killed;
+        private bool killed, audioplaying;
 
         enum states
         {
@@ -215,12 +215,17 @@ namespace TooCuteToLive
 
                 if (mPos.Y + mSprite.getHeight() / 2 >= mStrikePos.Y)
                 {
-                    //mPos.Y = mStrikePos.Y - mSprite.getHeight() / 2;
+                    mPos.Y = mStrikePos.Y - mSprite.getHeight() / 2;
                     mState = states.WAITING;
                 }
             }
             else if (mState == states.WAITING)
             {
+                if (!audioplaying)
+                {
+                    AudioManager.tickBoom.Play();
+                    audioplaying = true;
+                }
                 mBlowuptime -= (float)gt.ElapsedGameTime.TotalSeconds;
                 mSprite.Update((float)gt.ElapsedGameTime.TotalSeconds);
                 if (mBlowuptime < 0)
@@ -269,6 +274,7 @@ namespace TooCuteToLive
             mSprite.Reset();
             mSpriteExp.Reset();
             killed = false;
+            audioplaying = false;
         }
 
         public override void Draw(SpriteBatch sb)
