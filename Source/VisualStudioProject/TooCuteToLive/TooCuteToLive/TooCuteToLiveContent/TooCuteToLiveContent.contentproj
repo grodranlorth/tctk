@@ -311,11 +311,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="AnimatedSprites\babyeat.png">
-      <Name>babyeat</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="AnimatedSprites\babyjump.png">
       <Name>babyjump</Name>
       <Importer>TextureImporter</Importer>
@@ -328,26 +323,6 @@
     </Compile>
     <Compile Include="AnimatedSprites\babyspawn.png">
       <Name>babyspawn</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="AnimatedSprites\fattydeath.png">
-      <Name>fattydeath</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="AnimatedSprites\fattyeat.png">
-      <Name>fattyeat</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="AnimatedSprites\fattyjump.png">
-      <Name>fattyjump</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="AnimatedSprites\fattyonfire.png">
-      <Name>fattyonfire</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -377,6 +352,41 @@
       <Name>2qt2livmusic</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnimatedSprites\fattyjump.png">
+      <Name>fattyjump</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnimatedSprites\fattyeat.png">
+      <Name>fattyeat</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnimatedSprites\fattydeath.png">
+      <Name>fattydeath</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnimatedSprites\fattyonfire.png">
+      <Name>fattyonfire</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnimatedSprites\babyeat.png">
+      <Name>babyeat</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

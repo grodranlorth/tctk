@@ -40,11 +40,13 @@ namespace TooCuteToLive
         private float tHeight;
 
         private bool runOneTime;
+        
 
         public AnimatedSprite() { }
 
         public void LoadEnum(ContentManager content, spriteText st, bool runOnce)
         {
+            
             switch (st)
             {
                 case spriteText.BABYDEATH:
@@ -69,13 +71,13 @@ namespace TooCuteToLive
                     Load(content, "AnimatedSprites/fattyeat", 16, 0.05f, 127.0f, 135.0f, runOnce);
                     break;
                 case spriteText.FATTYJUMP:
-                    Load(content, "AnimatedSprites/fattyjump", 64, 0.025f, 131.0f, 139.0f, runOnce);
+                    Load(content, "AnimatedSprites/fattyjump", 45, 0.2f, 131.0f, 139.0f, runOnce);
                     break;
                 case spriteText.FATTYONFIRE:
                     Load(content, "AnimatedSprites/fattyonfire", 16, 0.05f, 174.0f, 152.0f, runOnce);
                     break;
                 case spriteText.MIDDEATH:
-                    Load(content, "AnimatedSprites/middeath", 37, 0.05f, 158.0f, 139.0f, runOnce);
+                    Load(content, "AnimatedSprites/middeath", 37, 0.05f, 149.0f, 139.0f, runOnce);
                     break;
                 case spriteText.MIDEAT:
                     Load(content, "AnimatedSprites/mideat", 16, 0.05f, 123.0f, 128.0f, runOnce);
@@ -99,6 +101,7 @@ namespace TooCuteToLive
         /// <param name="FPS">Frames Per Second</param>
         public void Load(ContentManager content, string name, int frameCount, float FPS, float width, float height, bool runOnce)
         {
+            
             mFrameCount = frameCount;
             mTexture = content.Load<Texture2D>(name);
             mFPS = FPS;
@@ -110,7 +113,8 @@ namespace TooCuteToLive
             tHeight = height;
             tWidth = width;
             runOneTime = runOnce; 
-        }
+
+        } 
 
         /// <summary>
         /// Update function - self explanatory
@@ -135,18 +139,38 @@ namespace TooCuteToLive
         }
 
         private Rectangle getRect(int frameNum)
-        {   
-            
-            int tW = mTexture.Width;
-            int fpr = (int)(tW / tWidth);
-            int gap = tW - (int)(tWidth * fpr);
-            int row = (int)((((frameNum + 1) * tWidth) + (gap * ((frameNum + 1) * tWidth) / tW)) / tW);
+        {
+            string n = mTexture.Name;
+
+           /* if (n == "fattyonfire" ||
+                n == "babyonfire" || 
+                n == "fattydeath" ||
+                n == "fattyeat" ||
+                n == "fattyjump" ||
+                n == "midonfire" ||
+                n == "babyeat")
+            {
+                int tW = mTexture.Width;
+                int fpr = (int)(tW / tWidth);
+                int row = (int)(((frameNum) * tWidth) / tW);
            
-            int xpos = (frameNum - (row * fpr)) * (int)tWidth;
-            int ypos = row * (int)tHeight;
-            Rectangle myRect = new Rectangle(xpos, ypos, (int)tWidth, (int)tHeight);
-           // Console.WriteLine(myRect); 
-            return myRect;
+                int xpos = (frameNum - (row * fpr)) * ((int)tWidth - 3);
+                int ypos = row * (int)tHeight;
+                Rectangle myRect = new Rectangle(xpos, ypos, (int)tWidth, (int)tHeight);
+                Console.WriteLine(myRect); 
+                return myRect;
+            } else { */
+                int tW = mTexture.Width;
+                int fpr = (int)(tW / tWidth);
+                int gap = tW - (int)(tWidth * fpr);
+                int row = (int)((((frameNum + 1) * tWidth) + (gap * ((frameNum + 1) * tWidth) / tW)) / tW);
+           
+                int xpos = (frameNum - (row * fpr)) * (int)tWidth;
+                int ypos = row * (int)tHeight;
+                Rectangle myRect = new Rectangle(xpos, ypos, (int)tWidth, (int)tHeight);
+               // Console.WriteLine(myRect); 
+                return myRect;
+          //  }
 
         }
 
