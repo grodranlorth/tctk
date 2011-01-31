@@ -96,6 +96,7 @@ namespace TooCuteToLive
     class WRainbow: Weapon
     {
         private float mYValue;
+        private float mAnimSpeed;
 
         enum states
         {
@@ -125,7 +126,8 @@ namespace TooCuteToLive
             {
                 /* animation */
                 if (mScale.Y <= (mYValue + 50) / mTexture.Height)
-                    mScale.Y += 0.05f;
+                    //mScale.Y += 0.05f;
+                    mScale.Y += mAnimSpeed;
 
                 mOnScreenTime -= (float)gt.ElapsedGameTime.TotalSeconds;
                 if (mOnScreenTime <= 0)
@@ -134,7 +136,7 @@ namespace TooCuteToLive
                     mOnScreenTime = 0.5f;
                     mScale.Y = 0.0f;
                 }
-                else if (mOnScreenTime <= .3)
+                else if (mOnScreenTime <= .15f)
                 {
                     mCharManager.pointKill(mStrikePos);
                 }
@@ -147,13 +149,16 @@ namespace TooCuteToLive
             mState = states.MOVING;
             mStrikeTime = 0.0f;
             mYValue = yValue;
+            mOnScreenTime = 0.5f;
+            /* XXX: So many magic numbers, whats one more? */
+            mAnimSpeed = mStrikePos.Y / 10000;
         }
 
         public override void Draw(SpriteBatch sb)
         {
             if (mState == states.STRIKING)
                 sb.Draw(mTexture, new Vector2(mStrikePos.X, 0.0f), null, Color.White, 0.0f,
-                        new Vector2(0.0f, 50.0f), mScale, SpriteEffects.None, 0.0f);
+                        new Vector2(0.0f, 0.0f), mScale, SpriteEffects.None, 0.0f);
             //sb.Draw(mTexture, new Vector2(mStrikePos.X, 0.0f), Color.White);
 
         }
