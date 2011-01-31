@@ -136,7 +136,7 @@ namespace TooCuteToLive
             mBlist.Last.Value.texScale = 0.5f;
             mBlist.Last.Value.Spritescale = .67f;
 
-            back = new Button(g, content, "Menu/backbutton", "AnimatedSprites/backbuttonspritesheet", g.GraphicsDevice.Viewport.Width - 550,
+            back = new Button(g, content, "Menu/backbutton", "AnimatedSprites/backbuttonspritesheet", g.GraphicsDevice.Viewport.Width*0.23f,
                 (g.GraphicsDevice.Viewport.Height) - 150, 8, 0.05f, 455f, 234, false, "back");
 
             menuScreen = content.Load<Texture2D>("Menu/menubackground");
@@ -211,12 +211,12 @@ namespace TooCuteToLive
                     break;
 
                 case states.INSTRUCT:
-                    spriteBatch.Draw(help, new Vector2(-100.0f, -10.0f), null, Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+                    spriteBatch.Draw(help, new Vector2(g.GraphicsDevice.Viewport.Width*0.35f, -10.0f), null, Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
                     back.Draw(spriteBatch);
                     break;
 
                 case states.CREDITS:
-                    spriteBatch.Draw(credits, new Vector2(-100.0f, -10.0f), null, Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+                    spriteBatch.Draw(credits, new Vector2(g.GraphicsDevice.Viewport.Width * 0.35f, -10.0f), null, Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
                     back.Draw(spriteBatch);
                     break;
             }
