@@ -157,7 +157,7 @@ namespace TooCuteToLive
         public override void Draw(SpriteBatch sb)
         {
             if (mState == states.STRIKING)
-                sb.Draw(mTexture, new Vector2(mStrikePos.X, 0.0f), null, Color.White, 0.0f,
+                sb.Draw(mTexture, new Vector2(mStrikePos.X - mTexture.Width / 2, 0.0f), null, Color.White, 0.0f,
                         new Vector2(0.0f, 0.0f), mScale, SpriteEffects.None, 0.0f);
             //sb.Draw(mTexture, new Vector2(mStrikePos.X, 0.0f), Color.White);
 
