@@ -84,16 +84,27 @@ namespace TooCuteToLive
         {
             List<Character> removeList = new List<Character>();
             mItemList = itemList;
+            bool noeat = false;
+
+            /* Dirty hacks! */
+            if (itemList.Count == 0)
+                    noeat = true;
+
 
             foreach (Character character in characterList)
             {
                 character.Update(gameTime, mGraphics);
                 foreach (Item i in itemList)
                 {
+                    character.Destination = i.Position;
+
                     if ((Math.Abs(i.Position.X - character.Position.X) < 10) &&
                         Math.Abs(i.Position.Y - character.Position.Y) < 10)
                         i.eating = true;
                 }
+
+                if (noeat)
+                    character.CeaseEating();
 
                 states state = character.getState();
                 character.Update(gameTime, mGraphics);

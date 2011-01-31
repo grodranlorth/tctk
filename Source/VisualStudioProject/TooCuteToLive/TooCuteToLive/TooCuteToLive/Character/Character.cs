@@ -193,7 +193,9 @@ namespace TooCuteToLive
                 int yDir = 0;
                 float xMove = destination.X - Position.X;
                 float yMove = destination.Y - Position.Y;
-                //Console.WriteLine(destination);
+
+                /* Mmmmm, mmm!  Spaghetti code! */
+
                 if (Math.Abs(mPosition.X - destination.X) < 20 &&
                     Math.Abs(mPosition.Y - destination.Y) < 20)
                 {
@@ -338,6 +340,14 @@ namespace TooCuteToLive
         {
             get { return multipleOfTwo; }
             set { multipleOfTwo = value; }
+        }
+
+        public void CeaseEating()
+        {
+            if (mStates == states.EATING || mStates == states.SEEKING)
+            {
+                mStates = states.WALKING;
+            }
         }
     }
 }
